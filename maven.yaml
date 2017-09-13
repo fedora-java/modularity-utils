@@ -59,9 +59,6 @@ data:
                 %_without_testlib 1
     components:
         rpms:
-            ant-contrib:
-                rationale: >
-                    Build dependency of apache-ivy, log4j12.
             ant:
                 rationale: >
                     Runtime dependency of ant-contrib, aqute-bnd, jflex,
@@ -81,6 +78,9 @@ data:
                          replacer, rhino, testng, velocity, xalan-j2,
                          xerces-j2, xml-commons-apis, xml-commons-resolver,
                          xml-stylebook, xmlunit, xpp3, xz-java.
+            ant-contrib:
+                rationale: >
+                    Build dependency of apache-ivy, log4j12.
             antlr:
                 rationale: >
                     Build dependency of ant, velocity.
@@ -111,9 +111,6 @@ data:
                          httpcomponents-client, jakarta-commons-httpclient,
                          maven-artifact-transfer, maven-assembly-plugin,
                          maven-install-plugin, snakeyaml.
-            apache-commons-collections4:
-                rationale: >
-                    Build dependency of apache-commons-vfs.
             apache-commons-collections:
                 rationale: >
                     Runtime dependency of apache-commons-beanutils,
@@ -123,6 +120,9 @@ data:
                          apache-commons-configuration,
                          apache-commons-validator, maven-dependency-plugin,
                          maven-doxia-sitetools, plexus-velocity, velocity.
+            apache-commons-collections4:
+                rationale: >
+                    Build dependency of apache-commons-vfs.
             apache-commons-compress:
                 rationale: >
                     Runtime dependency of plexus-archiver.
@@ -161,11 +161,6 @@ data:
             apache-commons-jxpath:
                 rationale: >
                     Build dependency of apache-commons-configuration, maven.
-            apache-commons-lang3:
-                rationale: >
-                    Runtime dependency of maven, maven-surefire, xmvn.
-                    Build dependency of maven, maven-shared-utils,
-                         maven-surefire.
             apache-commons-lang:
                 rationale: >
                     Runtime dependency of apache-commons-configuration, maven,
@@ -176,6 +171,11 @@ data:
                          apache-ivy, maven-dependency-plugin, maven-doxia,
                          maven-doxia-sitetools, maven-enforcer, maven-wagon,
                          replacer, slf4j, velocity.
+            apache-commons-lang3:
+                rationale: >
+                    Runtime dependency of maven, maven-surefire, xmvn.
+                    Build dependency of maven, maven-shared-utils,
+                         maven-surefire.
             apache-commons-logging:
                 rationale: >
                     Runtime dependency of apache-commons-beanutils,
@@ -440,26 +440,26 @@ data:
             jakarta-oro:
                 rationale: >
                     Build dependency of ant, apache-ivy, log4j12, velocity.
-            jansi-native:
-                rationale: >
-                    Runtime dependency of jansi, maven.
-                    Build dependency of jansi.
             jansi:
                 rationale: >
                     Runtime dependency of jline, maven.
                     Build dependency of jline, maven, maven-shared-utils.
+            jansi-native:
+                rationale: >
+                    Runtime dependency of jansi, maven.
+                    Build dependency of jansi.
             java_cup:
                 rationale: >
                     Runtime dependency of jflex.
                     Build dependency of java_cup, jflex, xalan-j2.
-            javacc-maven-plugin:
-                rationale: >
-                    Build dependency of apache-commons-configuration,
-                         apache-commons-jexl, glassfish-el, maven-surefire.
             javacc:
                 rationale: >
                     Runtime dependency of javacc-maven-plugin.
                     Build dependency of bsh, javacc, javacc-maven-plugin.
+            javacc-maven-plugin:
+                rationale: >
+                    Build dependency of apache-commons-configuration,
+                         apache-commons-jexl, glassfish-el, maven-surefire.
             javamail:
                 rationale: >
                     Build dependency of ant, log4j12.
@@ -630,15 +630,15 @@ data:
                 rationale: >
                     Runtime dependency of maven-shade-plugin.
                     Build dependency of maven-shade-plugin.
-            jdom2:
-                rationale: >
-                    Runtime dependency of plexus-containers.
-                    Build dependency of plexus-containers.
             jdom:
                 rationale: >
                     Runtime dependency of junit-addons, maven-shade-plugin.
                     Build dependency of apache-commons-jxpath, jaxen,
                          junit-addons, maven-shade-plugin, msv, velocity.
+            jdom2:
+                rationale: >
+                    Runtime dependency of plexus-containers.
+                    Build dependency of plexus-containers.
             jflex:
                 rationale: >
                     Build dependency of java_cup, jflex, qdox.
@@ -668,9 +668,6 @@ data:
                 rationale: >
                     Runtime dependency of maven-plugin-tools.
                     Build dependency of maven-plugin-tools.
-            junit-addons:
-                rationale: >
-                    Build dependency of maven-reporting-impl.
             junit:
                 rationale: >
                     Runtime dependency of ant, ant-contrib, javapackages-tools,
@@ -704,6 +701,9 @@ data:
                          plexus-sec-dispatcher, powermock, replacer, sisu,
                          sisu-mojos, snakeyaml, spec-version-maven-plugin,
                          testng, velocity, xmlunit, xmvn, xpp3.
+            junit-addons:
+                rationale: >
+                    Build dependency of maven-reporting-impl.
             jvnet-parent:
                 rationale: >
                     Build dependency of glassfish-annotation-api, glassfish-el,
@@ -719,6 +719,47 @@ data:
                     Runtime dependency of slf4j.
                     Build dependency of ant, apache-commons-configuration,
                          apache-commons-logging, jdom2, slf4j, velocity, xbean.
+            maven:
+                rationale: >
+                    Module API.
+                    Runtime dependency of exec-maven-plugin, hawtjni,
+                         javacc-maven-plugin, maven-antrun-plugin,
+                         maven-archiver, maven-artifact-resolver,
+                         maven-artifact-transfer, maven-assembly-plugin,
+                         maven-clean-plugin, maven-common-artifact-filters,
+                         maven-compiler-plugin, maven-dependency-analyzer,
+                         maven-dependency-plugin, maven-doxia-sitetools,
+                         maven-enforcer, maven-file-management,
+                         maven-filtering, maven-install-plugin,
+                         maven-invoker-plugin, maven-jar-plugin,
+                         maven-plugin-build-helper, maven-plugin-bundle,
+                         maven-plugin-tools, maven-remote-resources-plugin,
+                         maven-reporting-impl, maven-resources-plugin,
+                         maven-script-interpreter, maven-shade-plugin,
+                         maven-shared-incremental, maven-shared-io,
+                         maven-source-plugin, maven-surefire, maven2, modello,
+                         munge-maven-plugin, plexus-containers, replacer,
+                         sisu-mojos, spec-version-maven-plugin, xmvn.
+                    Build dependency of aqute-bnd, cal10n, exec-maven-plugin,
+                         hawtjni, javacc-maven-plugin, maven-antrun-plugin,
+                         maven-archiver, maven-artifact-resolver,
+                         maven-artifact-transfer, maven-assembly-plugin,
+                         maven-clean-plugin, maven-common-artifact-filters,
+                         maven-compiler-plugin, maven-dependency-analyzer,
+                         maven-dependency-plugin, maven-dependency-tree,
+                         maven-doxia-sitetools, maven-enforcer,
+                         maven-file-management, maven-filtering,
+                         maven-install-plugin, maven-invoker-plugin,
+                         maven-jar-plugin, maven-plugin-build-helper,
+                         maven-plugin-bundle, maven-plugin-testing,
+                         maven-plugin-tools, maven-remote-resources-plugin,
+                         maven-reporting-impl, maven-resources-plugin,
+                         maven-script-interpreter, maven-shade-plugin,
+                         maven-shared-incremental, maven-shared-io,
+                         maven-shared-utils, maven-source-plugin,
+                         maven-surefire, modello, munge-maven-plugin,
+                         plexus-containers, replacer, sisu-mojos,
+                         spec-version-maven-plugin, xmvn.
             maven-antrun-plugin:
                 rationale: >
                     Runtime dependency of apache-commons-parent, felix-parent.
@@ -793,15 +834,6 @@ data:
                     Build dependency of maven-dependency-plugin,
                          maven-enforcer, maven-plugin-bundle,
                          maven-shade-plugin.
-            maven-doxia-sitetools:
-                rationale: >
-                    Runtime dependency of javacc-maven-plugin,
-                         maven-dependency-plugin, maven-invoker-plugin,
-                         maven-plugin-tools, maven-reporting-impl.
-                    Build dependency of javacc-maven-plugin,
-                         maven-dependency-plugin, maven-invoker-plugin,
-                         maven-plugin-tools, maven-reporting-impl,
-                         maven-surefire.
             maven-doxia:
                 rationale: >
                     Runtime dependency of javacc-maven-plugin,
@@ -813,6 +845,15 @@ data:
                          maven-doxia-sitetools, maven-invoker-plugin,
                          maven-plugin-tools, maven-reporting-api,
                          maven-reporting-impl, maven-surefire.
+            maven-doxia-sitetools:
+                rationale: >
+                    Runtime dependency of javacc-maven-plugin,
+                         maven-dependency-plugin, maven-invoker-plugin,
+                         maven-plugin-tools, maven-reporting-impl.
+                    Build dependency of javacc-maven-plugin,
+                         maven-dependency-plugin, maven-invoker-plugin,
+                         maven-plugin-tools, maven-reporting-impl,
+                         maven-surefire.
             maven-enforcer:
                 rationale: >
                     Runtime dependency of objectweb-pom.
@@ -837,16 +878,16 @@ data:
             maven-install-plugin:
                 rationale: >
                     Build dependency of weld-parent, xmvn.
-            maven-invoker-plugin:
-                rationale: >
-                    Build dependency of maven-dependency-tree,
-                         maven-plugin-build-helper, maven-reporting-impl,
-                         maven-surefire, qdox.
             maven-invoker:
                 rationale: >
                     Runtime dependency of maven-invoker-plugin.
                     Build dependency of maven-invoker-plugin,
                          maven-plugin-testing, xmvn.
+            maven-invoker-plugin:
+                rationale: >
+                    Build dependency of maven-dependency-tree,
+                         maven-plugin-build-helper, maven-reporting-impl,
+                         maven-surefire, qdox.
             maven-jar-plugin:
                 rationale: >
                     Runtime dependency of apache-commons-parent,
@@ -969,6 +1010,16 @@ data:
                 rationale: >
                     Build dependency of maven-surefire, maven-wagon, maven2,
                          objenesis.
+            maven-shared:
+                rationale: >
+                    Build dependency of maven-archiver,
+                         maven-artifact-resolver, maven-artifact-transfer,
+                         maven-common-artifact-filters,
+                         maven-dependency-analyzer, maven-dependency-tree,
+                         maven-file-management, maven-filtering, maven-invoker,
+                         maven-reporting-api, maven-reporting-impl,
+                         maven-script-interpreter, maven-shared-incremental,
+                         maven-shared-io, maven-shared-utils, maven-verifier.
             maven-shared-incremental:
                 rationale: >
                     Runtime dependency of maven-compiler-plugin.
@@ -993,16 +1044,6 @@ data:
                          maven-filtering, maven-install-plugin,
                          maven-reporting-impl, maven-shared-incremental,
                          maven-shared-io, maven-surefire, maven-verifier.
-            maven-shared:
-                rationale: >
-                    Build dependency of maven-archiver,
-                         maven-artifact-resolver, maven-artifact-transfer,
-                         maven-common-artifact-filters,
-                         maven-dependency-analyzer, maven-dependency-tree,
-                         maven-file-management, maven-filtering, maven-invoker,
-                         maven-reporting-api, maven-reporting-impl,
-                         maven-script-interpreter, maven-shared-incremental,
-                         maven-shared-io, maven-shared-utils, maven-verifier.
             maven-source-plugin:
                 rationale: >
                     Runtime dependency of jboss-parent, weld-parent.
@@ -1050,47 +1091,6 @@ data:
                          maven-plugin-tools, maven-remote-resources-plugin,
                          maven-reporting-impl, maven-resources-plugin,
                          plexus-containers.
-            maven:
-                rationale: >
-                    Module API.
-                    Runtime dependency of exec-maven-plugin, hawtjni,
-                         javacc-maven-plugin, maven-antrun-plugin,
-                         maven-archiver, maven-artifact-resolver,
-                         maven-artifact-transfer, maven-assembly-plugin,
-                         maven-clean-plugin, maven-common-artifact-filters,
-                         maven-compiler-plugin, maven-dependency-analyzer,
-                         maven-dependency-plugin, maven-doxia-sitetools,
-                         maven-enforcer, maven-file-management,
-                         maven-filtering, maven-install-plugin,
-                         maven-invoker-plugin, maven-jar-plugin,
-                         maven-plugin-build-helper, maven-plugin-bundle,
-                         maven-plugin-tools, maven-remote-resources-plugin,
-                         maven-reporting-impl, maven-resources-plugin,
-                         maven-script-interpreter, maven-shade-plugin,
-                         maven-shared-incremental, maven-shared-io,
-                         maven-source-plugin, maven-surefire, maven2, modello,
-                         munge-maven-plugin, plexus-containers, replacer,
-                         sisu-mojos, spec-version-maven-plugin, xmvn.
-                    Build dependency of aqute-bnd, cal10n, exec-maven-plugin,
-                         hawtjni, javacc-maven-plugin, maven-antrun-plugin,
-                         maven-archiver, maven-artifact-resolver,
-                         maven-artifact-transfer, maven-assembly-plugin,
-                         maven-clean-plugin, maven-common-artifact-filters,
-                         maven-compiler-plugin, maven-dependency-analyzer,
-                         maven-dependency-plugin, maven-dependency-tree,
-                         maven-doxia-sitetools, maven-enforcer,
-                         maven-file-management, maven-filtering,
-                         maven-install-plugin, maven-invoker-plugin,
-                         maven-jar-plugin, maven-plugin-build-helper,
-                         maven-plugin-bundle, maven-plugin-testing,
-                         maven-plugin-tools, maven-remote-resources-plugin,
-                         maven-reporting-impl, maven-resources-plugin,
-                         maven-script-interpreter, maven-shade-plugin,
-                         maven-shared-incremental, maven-shared-io,
-                         maven-shared-utils, maven-source-plugin,
-                         maven-surefire, modello, munge-maven-plugin,
-                         plexus-containers, replacer, sisu-mojos,
-                         spec-version-maven-plugin, xmvn.
             mockito:
                 rationale: >
                     Runtime dependency of assertj-core, felix-parent,
@@ -1115,9 +1115,6 @@ data:
             munge-maven-plugin:
                 rationale: >
                     Build dependency of google-guice.
-            objectweb-asm3:
-                rationale: >
-                    Build dependency of jdom2, objectweb-asm3.
             objectweb-asm:
                 rationale: >
                     Runtime dependency of cglib, easymock, hawtjni,
@@ -1128,6 +1125,9 @@ data:
                          jdependency, maven-compiler-plugin,
                          maven-dependency-analyzer, maven-plugin-tools,
                          maven-shade-plugin, plexus-containers, xbean, xmvn.
+            objectweb-asm3:
+                rationale: >
+                    Build dependency of jdom2, objectweb-asm3.
             objectweb-pom:
                 rationale: >
                     Build dependency of objectweb-asm.
@@ -1351,13 +1351,13 @@ data:
             rhino:
                 rationale: >
                     Build dependency of bsf.
-            sisu-mojos:
-                rationale: >
-                    Build dependency of maven, maven-resolver, plexus-cipher.
             sisu:
                 rationale: >
                     Runtime dependency of maven, sisu-mojos, xmvn.
                     Build dependency of maven, maven-resolver, sisu-mojos.
+            sisu-mojos:
+                rationale: >
+                    Build dependency of maven, maven-resolver, plexus-cipher.
             slf4j:
                 rationale: >
                     Runtime dependency of aqute-bnd, maven,
