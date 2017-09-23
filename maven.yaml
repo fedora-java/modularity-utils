@@ -28,10 +28,12 @@ data:
         rpms:
             macros: |
                 %_with_xmvn_javadoc 1
+                %_without_asciidoc 1
                 %_without_avalon 1
                 %_without_bouncycastle 1
                 %_without_dafsa 1
                 %_without_desktop 1
+                %_without_doxygen 1
                 %_without_dtd 1
                 %_without_eclipse 1
                 %_without_ehcache 1
@@ -45,6 +47,7 @@ data:
                 %_without_hsqldb 1
                 %_without_itext 1
                 %_without_jmh 1
+                %_without_jna 1
                 %_without_jpa 1
                 %_without_logback 1
                 %_without_markdown 1
@@ -54,6 +57,7 @@ data:
                 %_without_python 1
                 %_without_reporting 1
                 %_without_scm 1
+                %_without_snappy 1
                 %_without_spring 1
                 %_without_ssh 1
                 %_without_testlib 1
@@ -198,7 +202,7 @@ data:
                          apache-commons-jexl, apache-commons-jxpath,
                          apache-commons-lang, apache-commons-lang3,
                          apache-commons-logging, apache-commons-net,
-                         apache-commons-vfs, apache-ivy.
+                         apache-commons-vfs, apache-ivy, bcel.
             apache-commons-vfs:
                 rationale: >
                     Build dependency of apache-commons-configuration,
@@ -260,6 +264,9 @@ data:
                     Build dependency of maven-enforcer, maven-invoker-plugin,
                          maven-plugin-build-helper, maven-plugin-tools,
                          maven-script-interpreter, plexus-bsh-factory, testng.
+            byaccj:
+                rationale: >
+                    Build dependency of qdox.
             cal10n:
                 rationale: >
                     Build dependency of slf4j.
@@ -272,10 +279,6 @@ data:
                     Runtime dependency of easymock, mockito, powermock.
                     Build dependency of assertj-core, easymock, google-guice,
                          mockito, powermock, xmvn.
-            dain-snappy:
-                rationale: >
-                    Runtime dependency of plexus-archiver.
-                    Build dependency of plexus-archiver.
             dom4j:
                 rationale: >
                     Build dependency of jaxen.
@@ -302,7 +305,7 @@ data:
                 rationale: >
                     Runtime dependency of felix-osgi-compendium.
                     Build dependency of felix-osgi-compendium, felix-utils,
-                         snappy-java, xbean.
+                         xbean.
             felix-osgi-foundation:
                 rationale: >
                     Runtime dependency of felix-osgi-compendium.
@@ -374,9 +377,8 @@ data:
                 rationale: >
                     Runtime dependency of google-guice, maven,
                          maven-shade-plugin, plexus-containers, xmvn.
-                    Build dependency of dain-snappy, google-guice,
-                         jackson-databind, maven, maven-shade-plugin,
-                         plexus-containers.
+                    Build dependency of google-guice, jackson-databind, maven,
+                         maven-shade-plugin, plexus-containers.
             hamcrest:
                 rationale: >
                     Runtime dependency of junit, mockito, powermock.
@@ -467,7 +469,7 @@ data:
                          apache-parent, apache-resource-bundles, aqute-bnd,
                          assertj-core, atinject, base64coder, bcel, bea-stax,
                          beust-jcommander, bsf, bsh, cal10n, cdi-api, cglib,
-                         dain-snappy, dom4j, easymock, exec-maven-plugin,
+                         dom4j, easymock, exec-maven-plugin,
                          fasterxml-oss-parent, felix-osgi-compendium,
                          felix-osgi-core, felix-osgi-foundation, felix-parent,
                          felix-utils, forge-parent, fusesource-pom,
@@ -519,11 +521,11 @@ data:
                          plexus-sec-dispatcher, plexus-utils, plexus-velocity,
                          powermock, qdox, regexp, relaxngDatatype, replacer,
                          rhino, sisu, sisu-mojos, slf4j, snakeyaml,
-                         snappy-java, sonatype-oss-parent,
-                         sonatype-plugins-parent, spec-version-maven-plugin,
-                         spice-parent, testng, velocity, weld-parent, xalan-j2,
-                         xbean, xerces-j2, xml-commons-apis,
-                         xml-commons-resolver, xmlunit, xmvn, xpp3, xz-java.
+                         sonatype-oss-parent, sonatype-plugins-parent,
+                         spec-version-maven-plugin, spice-parent, testng,
+                         velocity, weld-parent, xalan-j2, xbean, xerces-j2,
+                         xml-commons-apis, xml-commons-resolver, xmlunit, xmvn,
+                         xpp3, xz-java.
                     Build dependency of ant, ant-contrib, antlr, aopalliance,
                          apache-commons-beanutils, apache-commons-cli,
                          apache-commons-codec, apache-commons-collections,
@@ -537,7 +539,7 @@ data:
                          apache-parent, apache-resource-bundles, aqute-bnd,
                          assertj-core, atinject, base64coder, bcel, bea-stax,
                          beust-jcommander, bsf, bsh, cal10n, cdi-api, cglib,
-                         dain-snappy, dom4j, easymock, exec-maven-plugin,
+                         dom4j, easymock, exec-maven-plugin,
                          fasterxml-oss-parent, felix-osgi-compendium,
                          felix-osgi-core, felix-osgi-foundation, felix-parent,
                          felix-utils, forge-parent, fusesource-pom,
@@ -589,12 +591,11 @@ data:
                          plexus-sec-dispatcher, plexus-utils, plexus-velocity,
                          powermock, qdox, regexp, relaxngDatatype, replacer,
                          rhino, sisu, sisu-mojos, slf4j, snakeyaml,
-                         snappy-java, sonatype-oss-parent,
-                         sonatype-plugins-parent, spec-version-maven-plugin,
-                         spice-parent, testng, velocity, weld-parent, xalan-j2,
-                         xbean, xerces-j2, xml-commons-apis,
-                         xml-commons-resolver, xml-stylebook, xmlunit, xmvn,
-                         xpp3, xz-java.
+                         sonatype-oss-parent, sonatype-plugins-parent,
+                         spec-version-maven-plugin, spice-parent, testng,
+                         velocity, weld-parent, xalan-j2, xbean, xerces-j2,
+                         xml-commons-apis, xml-commons-resolver, xml-stylebook,
+                         xmlunit, xmvn, xpp3, xz-java.
             javassist:
                 rationale: >
                     Runtime dependency of powermock.
@@ -757,7 +758,7 @@ data:
                          apache-commons-io, apache-commons-lang3,
                          apache-commons-net, apache-commons-parent,
                          apache-commons-vfs, felix-parent, jdependency,
-                         log4j12, maven, maven-invoker, slf4j, snappy-java.
+                         log4j12, maven, maven-invoker, slf4j.
             maven-archiver:
                 rationale: >
                     Runtime dependency of hawtjni, maven-assembly-plugin,
@@ -844,8 +845,7 @@ data:
             maven-enforcer:
                 rationale: >
                     Runtime dependency of objectweb-pom, plexus-pom.
-                    Build dependency of cdi-api, dain-snappy,
-                         glassfish-jaxb-api, javamail,
+                    Build dependency of cdi-api, glassfish-jaxb-api, javamail,
                          jboss-interceptors-1.2-api, junit, jvnet-parent,
                          maven-plugin-tools, maven-surefire, maven2, msv,
                          objectweb-pom, plexus-archiver, plexus-classworlds,
@@ -917,7 +917,7 @@ data:
                          joda-convert, jsoup, junit, log4j12, maven-resolver,
                          msv, objenesis, osgi-annotation, osgi-compendium,
                          osgi-core, plexus-classworlds, plexus-containers,
-                         plexus-utils, powermock, snakeyaml, snappy-java,
+                         plexus-utils, powermock, snakeyaml,
                          spec-version-maven-plugin, testng, xbean.
             maven-plugin-testing:
                 rationale: >
@@ -1035,11 +1035,10 @@ data:
                 rationale: >
                     Runtime dependency of jboss-parent, weld-parent.
                     Build dependency of aqute-bnd, base64coder, cal10n,
-                         dain-snappy, glassfish-annotation-api,
-                         glassfish-jsp-api, glassfish-servlet-api,
-                         google-guice, javamail, javassist,
-                         jboss-interceptors-1.2-api, jboss-parent, jline,
-                         joda-time, jsch, jsoup, maven-plugin-testing,
+                         glassfish-annotation-api, glassfish-jsp-api,
+                         glassfish-servlet-api, google-guice, javamail,
+                         javassist, jboss-interceptors-1.2-api, jboss-parent,
+                         jline, joda-time, jsch, jsoup, maven-plugin-testing,
                          maven-plugin-tools, msv, munge-maven-plugin, slf4j,
                          snakeyaml, weld-parent, xbean.
             maven-surefire:
@@ -1328,8 +1327,7 @@ data:
                          plexus-containers, plexus-languages.
             regexp:
                 rationale: >
-                    Runtime dependency of bcel.
-                    Build dependency of ant, bcel, maven, xalan-j2.
+                    Build dependency of ant, maven, xalan-j2.
             relaxngDatatype:
                 rationale: >
                     Runtime dependency of msv.
@@ -1360,9 +1358,6 @@ data:
                 rationale: >
                     Runtime dependency of modello, testng.
                     Build dependency of modello, testng.
-            snappy-java:
-                rationale: >
-                    Build dependency of dain-snappy.
             sonatype-oss-parent:
                 rationale: >
                     Build dependency of apache-ivy, base64coder,
@@ -1381,9 +1376,8 @@ data:
                          plexus-sec-dispatcher.
             testng:
                 rationale: >
-                    Build dependency of beust-jcommander, cdi-api, dain-snappy,
-                         dom4j, easymock, hamcrest, maven-surefire, powermock,
-                         sisu.
+                    Build dependency of beust-jcommander, cdi-api, dom4j,
+                         easymock, hamcrest, maven-surefire, powermock, sisu.
             velocity:
                 rationale: >
                     Runtime dependency of maven-doxia-sitetools,
