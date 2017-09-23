@@ -13,7 +13,16 @@ data:
             - MIT
     dependencies:
         buildrequires:
-            bootstrap: master
+            maven: master
+            java: master
+            platform: master
+            # R of hawtjni
+            autotools: master
+            # BR of python-lxml
+            python2: master
+            python3: master
+            # BR of xml-stylebook
+            fonts: master
         requires:
             java: master
             platform: master
@@ -24,6 +33,9 @@ data:
     api:
         rpms:
             - maven
+    filter:
+        rpms:
+            - python2-lxml
     buildopts:
         rpms:
             macros: |
@@ -1319,6 +1331,11 @@ data:
                 rationale: >
                     Build dependency of apache-commons-compress,
                          jackson-databind, jline.
+            python-lxml:
+                buildorder: -1
+                rationale: >
+                    Runtime dependency of javapackages-tools.
+                    Build dependency of javapackages-tools.
             qdox:
                 rationale: >
                     Runtime dependency of hamcrest, maven-plugin-tools,
