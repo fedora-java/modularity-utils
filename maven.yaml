@@ -43,6 +43,7 @@ data:
                 %_without_asciidoc 1
                 %_without_avalon 1
                 %_without_bouncycastle 1
+                %_without_cython 1
                 %_without_dafsa 1
                 %_without_desktop 1
                 %_without_doxygen 1
