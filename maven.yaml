@@ -119,9 +119,9 @@ data:
             apache-commons-codec:
                 rationale: >
                     Runtime dependency of httpcomponents-client,
-                         jakarta-commons-httpclient, maven-artifact-transfer,
-                         maven-assembly-plugin, maven-install-plugin,
-                         snakeyaml.
+                         jakarta-commons-httpclient, maven,
+                         maven-artifact-transfer, maven-assembly-plugin,
+                         maven-install-plugin, snakeyaml.
                     Build dependency of apache-commons-configuration,
                          httpcomponents-client, jakarta-commons-httpclient,
                          maven-artifact-transfer, maven-assembly-plugin,
@@ -174,17 +174,17 @@ data:
                     Build dependency of apache-commons-configuration, maven.
             apache-commons-lang:
                 rationale: >
-                    Runtime dependency of apache-commons-configuration, maven,
-                         maven-dependency-plugin, maven-doxia,
-                         maven-doxia-sitetools, maven-enforcer, replacer,
-                         velocity.
+                    Runtime dependency of apache-commons-configuration,
+                         maven-dependency-plugin, maven-doxia, maven-enforcer,
+                         replacer, velocity.
                     Build dependency of apache-commons-configuration,
                          apache-ivy, maven-dependency-plugin, maven-doxia,
                          maven-doxia-sitetools, maven-enforcer, replacer,
                          slf4j, velocity.
             apache-commons-lang3:
                 rationale: >
-                    Runtime dependency of maven, maven-surefire, xmvn.
+                    Runtime dependency of maven, maven-doxia-sitetools,
+                         maven-surefire, xmvn.
                     Build dependency of httpcomponents-core, maven,
                          maven-shared-utils, maven-surefire.
             apache-commons-logging:
@@ -248,16 +248,15 @@ data:
             atinject:
                 rationale: >
                     Runtime dependency of cdi-api, google-guice, maven, xmvn.
-                    Build dependency of cdi-api, google-guice, maven-resolver,
-                         plexus-cipher, plexus-languages, sisu.
+                    Build dependency of cdi-api, google-guice, maven,
+                         maven-resolver, plexus-cipher, plexus-languages, sisu.
             base64coder:
                 rationale: >
                     Runtime dependency of snakeyaml.
                     Build dependency of snakeyaml.
             bcel:
                 rationale: >
-                    Build dependency of ant, ant-contrib, apache-commons-lang3,
-                         velocity, xalan-j2.
+                    Build dependency of ant, ant-contrib, velocity, xalan-j2.
             bea-stax:
                 rationale: >
                     Build dependency of dom4j, jdom2.
@@ -300,8 +299,8 @@ data:
                     Runtime dependency of felix-parent, hamcrest,
                          maven-plugin-tools.
                     Build dependency of apache-commons-collections4,
-                         apache-commons-lang3, felix-parent, hamcrest,
-                         httpcomponents-client, jline, maven-artifact-resolver,
+                         felix-parent, hamcrest, httpcomponents-client, jline,
+                         maven-artifact-resolver,
                          maven-common-artifact-filters, maven-plugin-testing,
                          maven-plugin-tools, maven-shared-io, powermock, xmvn.
             exec-maven-plugin:
@@ -340,6 +339,10 @@ data:
             fusesource-pom:
                 rationale: >
                     Build dependency of hawtjni, jansi, jansi-native.
+            geronimo-annotation:
+                rationale: >
+                    Runtime dependency of maven.
+                    Build dependency of maven.
             geronimo-jms:
                 rationale: >
                     Build dependency of log4j12.
@@ -348,7 +351,8 @@ data:
                     Build dependency of osgi-compendium.
             geronimo-parent-poms:
                 rationale: >
-                    Build dependency of geronimo-jms, geronimo-jpa.
+                    Build dependency of geronimo-annotation, geronimo-jms,
+                         geronimo-jpa.
             glassfish-annotation-api:
                 rationale: >
                     Build dependency of sisu.
@@ -378,9 +382,6 @@ data:
                          felix-osgi-compendium, glassfish-jsp-api,
                          google-guice, osgi-compendium, powermock, sisu,
                          velocity, xalan-j2.
-            google-gson:
-                rationale: >
-                    Build dependency of jsoup.
             google-guice:
                 rationale: >
                     Runtime dependency of maven, xmvn.
@@ -395,9 +396,8 @@ data:
             hamcrest:
                 rationale: >
                     Runtime dependency of junit, mockito, powermock.
-                    Build dependency of apache-commons-lang3, junit,
-                         maven-resolver, maven-shared-utils, mockito,
-                         powermock, replacer.
+                    Build dependency of junit, maven-resolver,
+                         maven-shared-utils, mockito, powermock, replacer.
             hawtjni:
                 rationale: >
                     Runtime dependency of jansi, jansi-native, maven.
@@ -412,7 +412,7 @@ data:
                     Runtime dependency of httpcomponents-client, maven,
                          maven-doxia, maven-wagon.
                     Build dependency of httpcomponents-client, maven-doxia,
-                         maven-wagon.
+                         maven-resolver, maven-wagon.
             httpcomponents-project:
                 rationale: >
                     Build dependency of httpcomponents-client,
@@ -486,17 +486,17 @@ data:
                          fasterxml-oss-parent, felix-osgi-compendium,
                          felix-osgi-core, felix-osgi-foundation, felix-parent,
                          felix-utils, forge-parent, fusesource-pom,
-                         geronimo-jms, geronimo-jpa, geronimo-parent-poms,
-                         glassfish-annotation-api, glassfish-el,
-                         glassfish-jaxb-api, glassfish-jsp-api,
+                         geronimo-annotation, geronimo-jms, geronimo-jpa,
+                         geronimo-parent-poms, glassfish-annotation-api,
+                         glassfish-el, glassfish-jaxb-api, glassfish-jsp-api,
                          glassfish-legal, glassfish-master-pom,
-                         glassfish-servlet-api, google-gson, google-guice,
-                         guava, hamcrest, hawtjni, httpcomponents-client,
-                         httpcomponents-core, httpcomponents-project, isorelax,
-                         jackson-annotations, jackson-core, jackson-databind,
-                         jackson-parent, jakarta-commons-httpclient,
-                         jakarta-oro, jansi, jansi-native, java_cup, javacc,
-                         javacc-maven-plugin, javamail, javassist, jaxen,
+                         glassfish-servlet-api, google-guice, guava, hamcrest,
+                         hawtjni, httpcomponents-client, httpcomponents-core,
+                         httpcomponents-project, isorelax, jackson-annotations,
+                         jackson-core, jackson-databind, jackson-parent,
+                         jakarta-commons-httpclient, jakarta-oro, jansi,
+                         jansi-native, java_cup, javacc, javacc-maven-plugin,
+                         javamail, javassist, jaxen,
                          jboss-interceptors-1.2-api, jboss-parent, jdepend,
                          jdependency, jdom, jdom2, jflex, jline, joda-convert,
                          joda-time, jsch, jsoup, jsr-305, jtidy, junit,
@@ -556,17 +556,17 @@ data:
                          fasterxml-oss-parent, felix-osgi-compendium,
                          felix-osgi-core, felix-osgi-foundation, felix-parent,
                          felix-utils, forge-parent, fusesource-pom,
-                         geronimo-jms, geronimo-jpa, geronimo-parent-poms,
-                         glassfish-annotation-api, glassfish-el,
-                         glassfish-jaxb-api, glassfish-jsp-api,
+                         geronimo-annotation, geronimo-jms, geronimo-jpa,
+                         geronimo-parent-poms, glassfish-annotation-api,
+                         glassfish-el, glassfish-jaxb-api, glassfish-jsp-api,
                          glassfish-legal, glassfish-master-pom,
-                         glassfish-servlet-api, google-gson, google-guice,
-                         guava, hamcrest, hawtjni, httpcomponents-client,
-                         httpcomponents-core, httpcomponents-project, isorelax,
-                         jackson-annotations, jackson-core, jackson-databind,
-                         jackson-parent, jakarta-commons-httpclient,
-                         jakarta-oro, jansi, jansi-native, java_cup, javacc,
-                         javacc-maven-plugin, javamail, javassist, jaxen,
+                         glassfish-servlet-api, google-guice, guava, hamcrest,
+                         hawtjni, httpcomponents-client, httpcomponents-core,
+                         httpcomponents-project, isorelax, jackson-annotations,
+                         jackson-core, jackson-databind, jackson-parent,
+                         jakarta-commons-httpclient, jakarta-oro, jansi,
+                         jansi-native, java_cup, javacc, javacc-maven-plugin,
+                         javamail, javassist, jaxen,
                          jboss-interceptors-1.2-api, jboss-parent, jdepend,
                          jdependency, jdom, jdom2, jflex, jline, joda-convert,
                          joda-time, jsch, jsoup, jsr-305, jtidy, junit,
@@ -680,16 +680,16 @@ data:
                          apache-commons-collections4, apache-commons-compress,
                          apache-commons-digester, apache-commons-exec,
                          apache-commons-io, apache-commons-jexl,
-                         apache-commons-jxpath, apache-commons-lang3,
-                         apache-commons-logging, apache-commons-net, aqute-bnd,
-                         assertj-core, atinject, base64coder, bsh, cal10n,
-                         cglib, easymock, felix-parent, glassfish-el,
-                         google-gson, hamcrest, httpcomponents-client,
-                         httpcomponents-core, jackson-core, jackson-parent,
+                         apache-commons-jxpath, apache-commons-logging,
+                         apache-commons-net, aqute-bnd, assertj-core, atinject,
+                         base64coder, bsh, cal10n, cglib, easymock,
+                         felix-parent, glassfish-el, hamcrest,
+                         httpcomponents-client, httpcomponents-core,
+                         jackson-core, jackson-parent,
                          jakarta-commons-httpclient, jansi-native,
                          javacc-maven-plugin, javamail, javassist, jdependency,
-                         jflex, jline, joda-time, jsoup, junit-addons, log4j12,
-                         maven, maven-archiver, maven-artifact-resolver,
+                         jflex, jline, joda-time, junit-addons, log4j12, maven,
+                         maven-archiver, maven-artifact-resolver,
                          maven-artifact-transfer, maven-clean-plugin,
                          maven-common-artifact-filters, maven-doxia,
                          maven-file-management, maven-invoker,
@@ -771,7 +771,7 @@ data:
                          apache-commons-io, apache-commons-lang3,
                          apache-commons-net, apache-commons-parent,
                          apache-commons-vfs, felix-parent, jdependency,
-                         log4j12, maven, maven-invoker, slf4j.
+                         log4j12, maven-invoker, slf4j.
             maven-archiver:
                 rationale: >
                     Runtime dependency of hawtjni, maven-assembly-plugin,
@@ -817,7 +817,7 @@ data:
                     Runtime dependency of apache-commons-parent,
                          fasterxml-oss-parent, felix-parent,
                          geronimo-parent-poms, glassfish-master-pom,
-                         httpcomponents-project, javapackages-tools.
+                         javapackages-tools.
             maven-dependency-analyzer:
                 rationale: >
                     Runtime dependency of maven-dependency-plugin.
@@ -909,9 +909,10 @@ data:
                     Build dependency of apache-commons-logging,
                          apache-commons-net, apache-commons-parent, cdi-api,
                          easymock, fasterxml-oss-parent, httpcomponents-client,
-                         httpcomponents-core, jackson-annotations, javamail,
-                         joda-time, maven, maven-surefire, msv, slf4j,
-                         spec-version-maven-plugin, weld-parent, xmvn.
+                         httpcomponents-core, httpcomponents-project,
+                         jackson-annotations, javamail, joda-time, maven,
+                         maven-surefire, msv, slf4j, spec-version-maven-plugin,
+                         weld-parent, xmvn.
             maven-plugin-bundle:
                 rationale: >
                     Runtime dependency of apache-commons-parent,
@@ -920,11 +921,11 @@ data:
                          apache-commons-parent, assertj-core, base64coder,
                          bcel, beust-jcommander, cdi-api, cglib, easymock,
                          fasterxml-oss-parent, felix-osgi-compendium,
-                         felix-osgi-core, geronimo-parent-poms,
-                         glassfish-annotation-api, glassfish-el,
-                         glassfish-jaxb-api, glassfish-jsp-api,
-                         glassfish-servlet-api, google-gson, google-guice,
-                         guava, httpcomponents-client, httpcomponents-core,
+                         felix-osgi-core, geronimo-annotation,
+                         geronimo-parent-poms, glassfish-annotation-api,
+                         glassfish-el, glassfish-jaxb-api, glassfish-jsp-api,
+                         glassfish-servlet-api, google-guice, guava,
+                         httpcomponents-client, httpcomponents-core,
                          jackson-annotations, jansi, jansi-native, javamail,
                          javassist, jaxen, jboss-interceptors-1.2-api, jline,
                          joda-convert, jsoup, junit, log4j12, maven-resolver,
@@ -1051,7 +1052,7 @@ data:
                          glassfish-annotation-api, glassfish-jsp-api,
                          glassfish-servlet-api, google-guice, javamail,
                          javassist, jboss-interceptors-1.2-api, jboss-parent,
-                         jline, joda-time, jsch, jsoup, maven-plugin-testing,
+                         jline, joda-time, jsch, maven-plugin-testing,
                          maven-plugin-tools, msv, munge-maven-plugin, slf4j,
                          snakeyaml, weld-parent, xbean.
             maven-surefire:
@@ -1130,7 +1131,8 @@ data:
                     Build dependency of objectweb-asm.
             objenesis:
                 rationale: >
-                    Runtime dependency of easymock, mockito, powermock.
+                    Runtime dependency of apache-commons-compress, easymock,
+                         mockito, powermock.
                     Build dependency of easymock, mockito, powermock.
             osgi-annotation:
                 rationale: >
@@ -1333,7 +1335,6 @@ data:
                     Build dependency of apache-commons-compress,
                          jackson-databind, jline.
             python-lxml:
-                buildorder: -1
                 rationale: >
                     Runtime dependency of javapackages-tools.
                     Build dependency of javapackages-tools.
@@ -1345,7 +1346,7 @@ data:
                          plexus-containers, plexus-languages.
             regexp:
                 rationale: >
-                    Build dependency of ant, maven, xalan-j2.
+                    Build dependency of ant, xalan-j2.
             relaxngDatatype:
                 rationale: >
                     Runtime dependency of msv.
@@ -1379,9 +1380,9 @@ data:
             sonatype-oss-parent:
                 rationale: >
                     Build dependency of apache-ivy, base64coder,
-                         beust-jcommander, cglib, google-gson, guava, jaxen,
-                         jflex, jline, jsch, powermock, qdox, relaxngDatatype,
-                         replacer, rhino, sisu-mojos, testng.
+                         beust-jcommander, cglib, guava, jaxen, jflex, jline,
+                         jsch, powermock, qdox, relaxngDatatype, replacer,
+                         rhino, sisu-mojos, testng.
             sonatype-plugins-parent:
                 rationale: >
                     Build dependency of munge-maven-plugin.
