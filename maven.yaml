@@ -1514,9 +1514,9 @@ data:
                 rationale: >
                     Build dependency of apache-commons-compress,
                          jackson-databind, jline.
-            # python-lxml-4.1.1-1.fc28
+            # python-lxml-4.1.1-1.fc28.1
             python-lxml:
-                ref: c0ca7460555bac3c6eb7d8875d9fbf881b806da7
+                ref: c0ca746
                 rationale: >
                     Runtime dependency of javapackages-tools.
                     Build dependency of javapackages-tools.

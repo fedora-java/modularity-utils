@@ -13,15 +13,14 @@ from koschei.backend import koji_util, repo_util, depsolve, repo_cache
 log = logging.getLogger('')
 
 bootstrap = False
+full_refs = False
 
 api = ['maven']
 profiles = {'default': ['maven']}
 includes = ['python-lxml', 'byaccj']
 excludes = ['java-1.7.0-openjdk', 'java-1.8.0-openjdk']
 default_ref = None
-frozen_refs = {
-    'python-lxml': 'c0ca7460555bac3c6eb7d8875d9fbf881b806da7',
-}
+frozen_refs = ['python-lxml']
 
 macros = {
     '_with_xmvn_javadoc': 1,
@@ -135,6 +134,19 @@ def get_build_requires(srpms):
     return koji_util.get_rpm_requires(ks, [parse_nvra(srpm) for srpm in srpms])
 
 
+# For each SRPM, figure out from which git commit it was built.
+def resolve_refs(srpms):
+    def get_ref(task):
+        log = ks.downloadTaskOutput(task['id'], 'checkout.log')
+        for line in log.decode('utf-8').splitlines():
+            if line.startswith('HEAD is now at'):
+                return line[15:22]
+    builds = koji_util.itercall(ks, list(srpms), lambda ks, srpm: ks.getBuild(parse_nvra(srpm)))
+    children_gen = koji_util.itercall(ks, list(builds), lambda ks, build: ks.getTaskChildren(build['task_id']))
+    tasks = [task for children in children_gen for task in children if task['label'] == 'srpm']
+    return {srpm: get_ref(task) for srpm, task in zip(srpms, tasks)}
+
+
 # Do the main work. Recursively resolve requires and build-requires, starting
 # from initial list of seed packages.
 def work(sack):
@@ -244,10 +256,16 @@ def work(sack):
         rt = rt[:-1] + '.'
         yaml.append(rt)
 
+    log.info('Resolving git refs...')
+    if full_refs:
+        refs = resolve_refs(srpms_done)
+    else:
+        refs = resolve_refs([srpm for srpm in srpms_done if name(srpm) in frozen_refs])
+
     for srpm in sorted(srpms_done):
         yaml.append('            # {}'.format(srpm[:-8]))
         yaml.append('            {}:'.format(name(srpm)))
-        ref = frozen_refs.get(name(srpm), default_ref)
+        ref = refs.get(srpm, default_ref)
         if ref:
             yaml.append('                ref: {}'.format(ref))
         yaml.append('                rationale: >')
