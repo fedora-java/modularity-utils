@@ -245,6 +245,7 @@ def work(sack):
         yaml.append(rt)
 
     for srpm in sorted(srpms_done):
+        yaml.append('            # {}'.format(srpm[:-8]))
         yaml.append('            {}:'.format(name(srpm)))
         ref = frozen_refs.get(name(srpm), default_ref)
         if ref:
