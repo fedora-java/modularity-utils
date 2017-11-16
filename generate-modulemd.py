@@ -18,6 +18,10 @@ api = ['maven']
 profiles = {'default': ['maven']}
 includes = ['python-lxml', 'byaccj']
 excludes = ['java-1.7.0-openjdk', 'java-1.8.0-openjdk']
+default_ref = None
+frozen_refs = {
+    'python-lxml': 'c0ca7460555bac3c6eb7d8875d9fbf881b806da7',
+}
 
 macros = {
     '_with_xmvn_javadoc': 1,
@@ -242,6 +246,9 @@ def work(sack):
 
     for srpm in sorted(srpms_done):
         yaml.append('            {}:'.format(name(srpm)))
+        ref = frozen_refs.get(name(srpm), default_ref)
+        if ref:
+            yaml.append('                ref: {}'.format(ref))
         yaml.append('                rationale: >')
         if srpm in api_srpms:
             yaml.append('                    Module API.')
