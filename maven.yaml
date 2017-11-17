@@ -78,6 +78,7 @@ data:
         rpms:
             # ant-1.10.1-8.fc28.1
             ant:
+                ref: ce4b0fb
                 rationale: >
                     Runtime dependency of ant-contrib, aqute-bnd, jflex,
                          junit-addons, maven-antrun-plugin,
@@ -98,25 +99,30 @@ data:
                          xml-stylebook, xmlunit, xpp3, xz-java.
             # ant-contrib-1.0-0.31.b3.fc28.1
             ant-contrib:
+                ref: 21d01bf
                 rationale: >
                     Build dependency of apache-ivy, log4j12.
             # antlr-2.7.7-52.fc28.1
             antlr:
+                ref: 5f337e5
                 rationale: >
                     Build dependency of ant, velocity.
             # aopalliance-1.0-15.fc28.1
             aopalliance:
+                ref: bfc0c86
                 rationale: >
                     Runtime dependency of google-guice, maven.
                     Build dependency of google-guice.
             # apache-commons-beanutils-1.9.3-3.fc28.1
             apache-commons-beanutils:
+                ref: 376486f
                 rationale: >
                     Runtime dependency of apache-commons-digester.
                     Build dependency of apache-commons-configuration,
                          apache-commons-digester, apache-commons-jxpath.
             # apache-commons-cli-1.4-2.fc28.1
             apache-commons-cli:
+                ref: 34454d9
                 rationale: >
                     Runtime dependency of hawtjni, maven, plexus-cli,
                          plexus-containers, xmvn.
@@ -124,6 +130,7 @@ data:
                          plexus-containers.
             # apache-commons-codec-1.10-5.fc28.1
             apache-commons-codec:
+                ref: 2fb3465
                 rationale: >
                     Runtime dependency of httpcomponents-client,
                          jakarta-commons-httpclient, maven,
@@ -135,6 +142,7 @@ data:
                          maven-install-plugin, snakeyaml.
             # apache-commons-collections-3.2.2-6.fc28.1
             apache-commons-collections:
+                ref: 5116614
                 rationale: >
                     Runtime dependency of apache-commons-beanutils,
                          maven-dependency-plugin, maven-doxia-sitetools,
@@ -144,28 +152,34 @@ data:
                          maven-doxia-sitetools, plexus-velocity, velocity.
             # apache-commons-collections4-4.1-1.fc28.1
             apache-commons-collections4:
+                ref: e736444
                 rationale: >
                     Build dependency of apache-commons-vfs.
             # apache-commons-compress-1.15-1.fc28.1
             apache-commons-compress:
+                ref: 36a4f31
                 rationale: >
                     Runtime dependency of plexus-archiver.
                     Build dependency of apache-commons-vfs, plexus-archiver.
             # apache-commons-configuration-1.10-10.fc28.1
             apache-commons-configuration:
+                ref: 6558140
                 rationale: >
                     Build dependency of maven-doxia.
             # apache-commons-digester-2.1-9.fc28.1
             apache-commons-digester:
+                ref: f246c67
                 rationale: >
                     Build dependency of apache-commons-configuration.
             # apache-commons-exec-1.3-7.fc28.1
             apache-commons-exec:
+                ref: f9cae69
                 rationale: >
                     Runtime dependency of exec-maven-plugin.
                     Build dependency of exec-maven-plugin.
             # apache-commons-io-2.6-1.fc28.1
             apache-commons-io:
+                ref: 4c748d3
                 rationale: >
                     Runtime dependency of jdependency, maven, maven-archiver,
                          maven-assembly-plugin, maven-dependency-plugin,
@@ -182,14 +196,17 @@ data:
                          plexus-io, replacer.
             # apache-commons-jexl-2.1.1-19.fc28.1
             apache-commons-jexl:
+                ref: 4bcef58
                 rationale: >
                     Build dependency of apache-commons-configuration.
             # apache-commons-jxpath-1.3-28.fc28.1
             apache-commons-jxpath:
+                ref: 31c8505
                 rationale: >
                     Build dependency of apache-commons-configuration, maven.
             # apache-commons-lang-2.6-20.fc28.1
             apache-commons-lang:
+                ref: bc04d6c
                 rationale: >
                     Runtime dependency of apache-commons-configuration,
                          maven-dependency-plugin, maven-doxia, maven-enforcer,
@@ -200,6 +217,7 @@ data:
                          slf4j, velocity.
             # apache-commons-lang3-3.7-1.fc28.1
             apache-commons-lang3:
+                ref: e52137a
                 rationale: >
                     Runtime dependency of maven, maven-doxia-sitetools,
                          maven-surefire, xmvn.
@@ -207,6 +225,7 @@ data:
                          maven-shared-utils, maven-surefire.
             # apache-commons-logging-1.2-11.fc28.1
             apache-commons-logging:
+                ref: c25d2cd
                 rationale: >
                     Runtime dependency of apache-commons-beanutils,
                          apache-commons-configuration, apache-commons-digester,
@@ -222,10 +241,12 @@ data:
                          plexus-classworlds, powermock, slf4j, velocity, xbean.
             # apache-commons-net-3.6-2.fc28.1
             apache-commons-net:
+                ref: da28b2b
                 rationale: >
                     Build dependency of ant, apache-commons-vfs, maven-wagon.
             # apache-commons-parent-42-4.fc28.1
             apache-commons-parent:
+                ref: 99cf83d
                 rationale: >
                     Build dependency of ant-contrib, apache-commons-beanutils,
                          apache-commons-cli, apache-commons-codec,
@@ -239,16 +260,19 @@ data:
                          apache-commons-vfs, apache-ivy, bcel.
             # apache-commons-vfs-2.1-11.fc28.1
             apache-commons-vfs:
+                ref: 66dc77f
                 rationale: >
                     Build dependency of apache-commons-configuration,
                          apache-ivy.
             # apache-ivy-2.4.0-9.fc28.1
             apache-ivy:
+                ref: e39658b
                 rationale: >
                     Runtime dependency of javapackages-tools.
                     Build dependency of ant-contrib, xmvn.
             # apache-parent-18-3.fc28.1
             apache-parent:
+                ref: a143cfe
                 rationale: >
                     Runtime dependency of apache-commons-parent, felix-parent,
                          httpcomponents-project, maven-parent.
@@ -258,51 +282,61 @@ data:
                          xml-commons-resolver.
             # apache-resource-bundles-2-19.fc28.1
             apache-resource-bundles:
+                ref: 13288c2
                 rationale: >
                     Runtime dependency of apache-parent.
                     Build dependency of apache-parent, easymock, google-guice,
                          objenesis.
             # aqute-bnd-3.5.0-1.fc28.1
             aqute-bnd:
+                ref: b6eebff
                 rationale: >
                     Runtime dependency of maven-plugin-bundle.
                     Build dependency of jdom2, maven-plugin-bundle, mockito,
                          objectweb-asm.
             # assertj-core-3.8.0-1.fc28.1
             assertj-core:
+                ref: 504e557
                 rationale: >
                     Build dependency of maven-archiver, powermock.
             # atinject-1-25.20100611svn86.fc28.1
             atinject:
+                ref: d2a9217
                 rationale: >
                     Runtime dependency of cdi-api, google-guice, maven, xmvn.
                     Build dependency of cdi-api, google-guice, maven,
                          maven-resolver, plexus-cipher, plexus-languages, sisu.
             # base64coder-20101219-19.fc28.1
             base64coder:
+                ref: b8cad2c
                 rationale: >
                     Runtime dependency of snakeyaml.
                     Build dependency of snakeyaml.
             # bcel-6.1-2.fc28.1
             bcel:
+                ref: 089d5fc
                 rationale: >
                     Build dependency of ant, ant-contrib, velocity, xalan-j2.
             # bea-stax-1.2.0-15.fc28.1
             bea-stax:
+                ref: 39926f3
                 rationale: >
                     Build dependency of dom4j, jdom2.
             # beust-jcommander-1.71-2.fc28.1
             beust-jcommander:
+                ref: a314197
                 rationale: >
                     Runtime dependency of testng, xmvn.
                     Build dependency of testng, xmvn.
             # bsf-2.4.0-27.fc28.1
             bsf:
+                ref: 8bc3606
                 rationale: >
                     Runtime dependency of bsh.
                     Build dependency of ant, bsh.
             # bsh-2.0-8.b6.fc28.1
             bsh:
+                ref: 44dadb7
                 rationale: >
                     Runtime dependency of maven-enforcer, maven-invoker-plugin,
                          maven-plugin-build-helper, maven-script-interpreter,
@@ -312,29 +346,35 @@ data:
                          maven-script-interpreter, plexus-bsh-factory, testng.
             # byaccj-1.15-16.fc28.1
             byaccj:
+                ref: df586fc
                 rationale: >
                     Build dependency of qdox.
             # cal10n-0.8.1-4.fc28.1
             cal10n:
+                ref: feb0724
                 rationale: >
                     Build dependency of slf4j.
             # cdi-api-1.2-6.fc28.1
             cdi-api:
+                ref: 83bc700
                 rationale: >
                     Runtime dependency of maven, sisu.
                     Build dependency of plexus-cipher, sisu.
             # cglib-3.2.4-6.fc28.1
             cglib:
+                ref: 03c8263
                 rationale: >
                     Runtime dependency of easymock, mockito, powermock.
                     Build dependency of assertj-core, easymock, google-guice,
                          mockito, powermock, xmvn.
             # dom4j-2.0.0-3.fc28.1
             dom4j:
+                ref: 797e75f
                 rationale: >
                     Build dependency of jaxen.
             # easymock-3.5-1.fc28.1
             easymock:
+                ref: 0c006d5
                 rationale: >
                     Runtime dependency of felix-parent, hamcrest,
                          maven-plugin-tools.
@@ -345,95 +385,115 @@ data:
                          maven-plugin-tools, maven-shared-io, powermock, xmvn.
             # exec-maven-plugin-1.6.0-2.fc28.1
             exec-maven-plugin:
+                ref: 0adce2a
                 rationale: >
                     Build dependency of apache-commons-net, joda-time, qdox.
             # fasterxml-oss-parent-26-5.fc28.1
             fasterxml-oss-parent:
+                ref: cc83951
                 rationale: >
                     Runtime dependency of jackson-parent.
                     Build dependency of jackson-parent.
             # felix-osgi-compendium-1.4.0-25.fc28.1
             felix-osgi-compendium:
+                ref: 275f5d1
                 rationale: >
                     Build dependency of felix-utils.
             # felix-osgi-core-1.4.0-22.fc28.1
             felix-osgi-core:
+                ref: 8d647b9
                 rationale: >
                     Runtime dependency of felix-osgi-compendium.
                     Build dependency of felix-osgi-compendium, felix-utils,
                          xbean.
             # felix-osgi-foundation-1.2.0-22.fc28.1
             felix-osgi-foundation:
+                ref: 7a9bffe
                 rationale: >
                     Runtime dependency of felix-osgi-compendium.
                     Build dependency of felix-osgi-compendium.
             # felix-parent-4-4.fc28.1
             felix-parent:
+                ref: 617172b
                 rationale: >
                     Build dependency of felix-osgi-compendium, felix-osgi-core,
                          felix-osgi-foundation, felix-utils,
                          maven-plugin-bundle.
             # felix-utils-1.10.2-1.fc28.1
             felix-utils:
+                ref: 84f7577
                 rationale: >
                     Runtime dependency of maven-plugin-bundle.
                     Build dependency of maven-plugin-bundle.
             # forge-parent-38-9.fc28.1
             forge-parent:
+                ref: 23107b6
                 rationale: >
                     Runtime dependency of sonatype-plugins-parent,
                          spice-parent.
                     Build dependency of sonatype-plugins-parent, spice-parent.
             # fusesource-pom-1.11-2.fc28.1
             fusesource-pom:
+                ref: 637b6a8
                 rationale: >
                     Build dependency of hawtjni, jansi, jansi-native.
             # geronimo-annotation-1.0-21.fc28.1
             geronimo-annotation:
+                ref: 655709a
                 rationale: >
                     Runtime dependency of maven.
                     Build dependency of maven.
             # geronimo-jms-1.1.1-24.fc28.1
             geronimo-jms:
+                ref: 17e5434
                 rationale: >
                     Build dependency of log4j12.
             # geronimo-jpa-1.1.1-20.fc28.1
             geronimo-jpa:
+                ref: 5f2c4e3
                 rationale: >
                     Build dependency of osgi-compendium.
             # geronimo-parent-poms-1.6-24.fc28.1
             geronimo-parent-poms:
+                ref: 6ff7f52
                 rationale: >
                     Build dependency of geronimo-annotation, geronimo-jms,
                          geronimo-jpa.
             # glassfish-annotation-api-1.2-12.fc28.1
             glassfish-annotation-api:
+                ref: 46c3cd2
                 rationale: >
                     Build dependency of sisu.
             # glassfish-el-3.0.1-0.6.b08.fc28.1
             glassfish-el:
+                ref: ce097c1
                 rationale: >
                     Runtime dependency of cdi-api, glassfish-jsp-api.
                     Build dependency of cdi-api, glassfish-jsp-api.
             # glassfish-jaxb-api-2.2.12-7.fc28.1
             glassfish-jaxb-api:
+                ref: d1fc0f1
                 rationale: >
                     Build dependency of dom4j.
             # glassfish-jsp-api-2.3.2-0.8.b01.fc28.1
             glassfish-jsp-api:
+                ref: 8bb48de
                 rationale: >
                     Build dependency of apache-commons-jxpath.
             # glassfish-legal-1.1-10.fc28.1
             glassfish-legal:
+                ref: 51f9a56
                 rationale: >
                     Build dependency of glassfish-annotation-api, glassfish-el.
             # glassfish-master-pom-8-10.fc28.1
             glassfish-master-pom:
+                ref: bfd91d6
                 rationale: >
                     Runtime dependency of glassfish-legal.
                     Build dependency of glassfish-legal.
             # glassfish-servlet-api-3.1.0-13.fc28.1
             glassfish-servlet-api:
+                ref: 4f819b3
                 rationale: >
                     Runtime dependency of felix-osgi-compendium,
                          glassfish-jsp-api.
@@ -444,12 +504,14 @@ data:
                          velocity, xalan-j2.
             # google-guice-4.1-8.fc28.1
             google-guice:
+                ref: 040c004
                 rationale: >
                     Runtime dependency of maven, xmvn.
                     Build dependency of maven, maven-resolver,
                          plexus-languages, sisu, testng.
             # guava-18.0-11.fc28.1
             guava:
+                ref: 69c77c2
                 rationale: >
                     Runtime dependency of google-guice, maven,
                          maven-shade-plugin, plexus-containers, xmvn.
@@ -457,23 +519,27 @@ data:
                          maven-shade-plugin, plexus-containers.
             # hamcrest-1.3-22.fc28.1
             hamcrest:
+                ref: cfdb3b6
                 rationale: >
                     Runtime dependency of junit, mockito, powermock.
                     Build dependency of junit, maven-resolver,
                          maven-shared-utils, mockito, powermock, replacer.
             # hawtjni-1.15-2.fc28.1
             hawtjni:
+                ref: e58263f
                 rationale: >
                     Runtime dependency of jansi, jansi-native, maven.
                     Build dependency of jansi-native.
             # httpcomponents-client-4.5.3-4.fc28.1
             httpcomponents-client:
+                ref: 71f7305
                 rationale: >
                     Runtime dependency of maven, maven-doxia, maven-wagon.
                     Build dependency of maven-doxia, maven-resolver,
                          maven-wagon.
             # httpcomponents-core-4.4.8-1.fc28.1
             httpcomponents-core:
+                ref: 7e1d374
                 rationale: >
                     Runtime dependency of httpcomponents-client, maven,
                          maven-doxia, maven-wagon.
@@ -481,74 +547,89 @@ data:
                          maven-resolver, maven-wagon.
             # httpcomponents-project-9-1.fc28.1
             httpcomponents-project:
+                ref: 49e522e
                 rationale: >
                     Build dependency of httpcomponents-client,
                          httpcomponents-core.
             # isorelax-0-0.22.release20050331.fc28.1
             isorelax:
+                ref: bdff74a
                 rationale: >
                     Build dependency of jdom2, msv.
             # jackson-annotations-2.7.6-4.fc28.1
             jackson-annotations:
+                ref: 4b328d0
                 rationale: >
                     Runtime dependency of jackson-databind, modello.
                     Build dependency of jackson-databind, modello.
             # jackson-core-2.7.6-3.fc28.1
             jackson-core:
+                ref: 51c57c8
                 rationale: >
                     Runtime dependency of jackson-databind, modello.
                     Build dependency of jackson-databind, modello.
             # jackson-databind-2.7.6-5.fc28.1
             jackson-databind:
+                ref: 98135e2
                 rationale: >
                     Runtime dependency of modello.
                     Build dependency of modello.
             # jackson-parent-2.7-3.1.fc28.1
             jackson-parent:
+                ref: a195e0d
                 rationale: >
                     Build dependency of jackson-annotations, jackson-core,
                          jackson-databind.
             # jakarta-commons-httpclient-3.1-27.fc28.1
             jakarta-commons-httpclient:
+                ref: 757a273
                 rationale: >
                     Build dependency of ant-contrib, apache-commons-vfs,
                          apache-ivy.
             # jakarta-oro-2.0.8-22.fc28.1
             jakarta-oro:
+                ref: e42b49c
                 rationale: >
                     Build dependency of ant, apache-ivy, log4j12, velocity.
             # jansi-1.16-2.fc28.1
             jansi:
+                ref: d1cf635
                 rationale: >
                     Runtime dependency of jline, maven.
                     Build dependency of jline, maven, maven-shared-utils,
                          maven-surefire.
             # jansi-native-1.7-3.fc28.1
             jansi-native:
+                ref: 64dcfcf
                 rationale: >
                     Runtime dependency of jansi, maven.
                     Build dependency of jansi.
             # java_cup-0.11b-7.fc28.1
             java_cup:
+                ref: 03fcdd9
                 rationale: >
                     Runtime dependency of jflex.
                     Build dependency of java_cup, jflex, xalan-j2.
             # javacc-7.0.2-3.fc28.1
             javacc:
+                ref: 31ca2d5
                 rationale: >
                     Runtime dependency of javacc-maven-plugin.
                     Build dependency of bsh, javacc, javacc-maven-plugin.
             # javacc-maven-plugin-2.6-24.fc28.1
             javacc-maven-plugin:
+                ref: 834cd49
                 rationale: >
                     Build dependency of apache-commons-configuration,
                          apache-commons-jexl, glassfish-el, maven-surefire.
             # javamail-1.5.2-6.fc28.1
             javamail:
+                ref: 06a57d5
                 rationale: >
                     Build dependency of ant, log4j12.
             # javapackages-tools-5.0.0-9.fc28.1
             javapackages-tools:
+                ref: aad699e
                 rationale: >
                     Runtime dependency of ant, ant-contrib, antlr, aopalliance,
                          apache-commons-beanutils, apache-commons-cli,
@@ -692,35 +773,42 @@ data:
                          xmlunit, xmvn, xpp3, xz-java.
             # javassist-3.18.1-7.fc28.1
             javassist:
+                ref: 019c498
                 rationale: >
                     Runtime dependency of powermock.
                     Build dependency of powermock, slf4j.
             # jaxen-1.1.6-12.fc28.1
             jaxen:
+                ref: 93a4fd8
                 rationale: >
                     Runtime dependency of dom4j, junit-addons.
                     Build dependency of dom4j, jdom, jdom2, junit-addons,
                          velocity.
             # jboss-interceptors-1.2-api-1.0.0-7.fc28.1
             jboss-interceptors-1.2-api:
+                ref: 1a9653d
                 rationale: >
                     Runtime dependency of cdi-api.
                     Build dependency of cdi-api.
             # jboss-parent-20-3.fc28.1
             jboss-parent:
+                ref: 599e29f
                 rationale: >
                     Build dependency of jboss-interceptors-1.2-api.
             # jdepend-2.9.1-17.fc28.1
             jdepend:
+                ref: 9830a55
                 rationale: >
                     Build dependency of ant.
             # jdependency-1.2-1.fc28.1
             jdependency:
+                ref: 2373523
                 rationale: >
                     Runtime dependency of maven-shade-plugin.
                     Build dependency of maven-shade-plugin.
             # jdom-1.1.3-14.fc28.1
             jdom:
+                ref: 2d4e9de
                 rationale: >
                     Runtime dependency of junit-addons, maven-shade-plugin.
                     Build dependency of apache-commons-jxpath, jaxen,
@@ -728,48 +816,58 @@ data:
                          plexus-languages, velocity.
             # jdom2-2.0.6-8.fc28.1
             jdom2:
+                ref: dd111c1
                 rationale: >
                     Runtime dependency of plexus-containers.
                     Build dependency of plexus-containers.
             # jflex-1.6.1-9.fc28.1
             jflex:
+                ref: 8ca0939
                 rationale: >
                     Build dependency of java_cup, jflex, qdox.
             # jline-2.13-10.fc28.1
             jline:
+                ref: 53f3010
                 rationale: >
                     Runtime dependency of bsh, rhino.
                     Build dependency of plexus-interactivity.
             # joda-convert-1.9.2-1.fc28.1
             joda-convert:
+                ref: 272634d
                 rationale: >
                     Build dependency of joda-time.
             # joda-time-2.9.9-1.tzdata2017b.fc28.1
             joda-time:
+                ref: 8d4a6b5
                 rationale: >
                     Build dependency of snakeyaml.
             # jsch-0.1.54-5.fc28.1
             jsch:
+                ref: 9be68d5
                 rationale: >
                     Build dependency of ant, apache-ivy.
             # jsoup-1.11.1-1.fc28.1
             jsoup:
+                ref: c20f1a6
                 rationale: >
                     Runtime dependency of maven-wagon, modello.
                     Build dependency of maven-wagon, modello.
             # jsr-305-0-0.21.20130910svn.fc28.1
             jsr-305:
+                ref: b88fc69
                 rationale: >
                     Build dependency of guava, maven-assembly-plugin,
                          maven-enforcer, maven-filtering, maven-shared-utils,
                          maven-surefire, plexus-archiver, plexus-io, testng.
             # jtidy-1.0-0.25.20100930svn1125.fc28.1
             jtidy:
+                ref: 0dd587f
                 rationale: >
                     Runtime dependency of maven-plugin-tools.
                     Build dependency of maven-plugin-tools.
             # junit-4.12-7.fc28.1
             junit:
+                ref: df6fbe6
                 rationale: >
                     Runtime dependency of ant, ant-contrib, javapackages-tools,
                          junit-addons, maven-verifier, mockito, modello,
@@ -803,10 +901,12 @@ data:
                          testng, velocity, xmlunit, xmvn, xpp3.
             # junit-addons-1.4-15.fc28.1
             junit-addons:
+                ref: 120c6df
                 rationale: >
                     Build dependency of maven-reporting-impl.
             # jvnet-parent-4-9.fc28.1
             jvnet-parent:
+                ref: 7764d8b
                 rationale: >
                     Build dependency of glassfish-annotation-api, glassfish-el,
                          glassfish-jaxb-api, glassfish-jsp-api,
@@ -814,17 +914,20 @@ data:
                          spec-version-maven-plugin.
             # jzlib-1.1.3-6.fc28.1
             jzlib:
+                ref: 93b5224
                 rationale: >
                     Runtime dependency of jsch.
                     Build dependency of jsch.
             # log4j12-1.2.17-20.fc28.1
             log4j12:
+                ref: de0f963
                 rationale: >
                     Runtime dependency of slf4j.
                     Build dependency of ant, apache-commons-configuration,
                          apache-commons-logging, jdom2, slf4j, velocity, xbean.
             # maven-3.5.2-1.fc28.1
             maven:
+                ref: ce002ad
                 rationale: >
                     Module API.
                     Runtime dependency of exec-maven-plugin, hawtjni,
@@ -867,6 +970,7 @@ data:
                          spec-version-maven-plugin, xmvn.
             # maven-antrun-plugin-1.8-5.fc28.1
             maven-antrun-plugin:
+                ref: f0fb9f5
                 rationale: >
                     Runtime dependency of apache-commons-parent, felix-parent.
                     Build dependency of apache-commons-cli,
@@ -878,6 +982,7 @@ data:
                          log4j12, maven-invoker, slf4j.
             # maven-archiver-3.2.0-1.fc28.1
             maven-archiver:
+                ref: 1a6eda4
                 rationale: >
                     Runtime dependency of hawtjni, maven-assembly-plugin,
                          maven-jar-plugin, maven-plugin-bundle,
@@ -887,11 +992,13 @@ data:
                          maven-source-plugin.
             # maven-artifact-resolver-1.0-17.fc28.1
             maven-artifact-resolver:
+                ref: 8350e73
                 rationale: >
                     Runtime dependency of maven-remote-resources-plugin.
                     Build dependency of maven-remote-resources-plugin.
             # maven-artifact-transfer-0.9.0-3.fc28.1
             maven-artifact-transfer:
+                ref: 5950781
                 rationale: >
                     Runtime dependency of maven-assembly-plugin,
                          maven-dependency-plugin, maven-enforcer,
@@ -901,6 +1008,7 @@ data:
                          maven-shade-plugin.
             # maven-assembly-plugin-3.1.0-1.fc28.1
             maven-assembly-plugin:
+                ref: 7176305
                 rationale: >
                     Runtime dependency of apache-commons-parent.
                     Build dependency of apache-commons-codec,
@@ -909,10 +1017,12 @@ data:
                          maven-enforcer, plexus-component-api, qdox, xmvn.
             # maven-clean-plugin-3.0.0-4.fc28.1
             maven-clean-plugin:
+                ref: adb26db
                 rationale: >
                     Build dependency of maven-invoker.
             # maven-common-artifact-filters-3.0.1-3.fc28.1
             maven-common-artifact-filters:
+                ref: bf4bccb
                 rationale: >
                     Runtime dependency of maven-artifact-transfer,
                          maven-assembly-plugin, maven-dependency-plugin,
@@ -924,6 +1034,7 @@ data:
                          maven-surefire, sisu-mojos.
             # maven-compiler-plugin-3.7.0-1.fc28.1
             maven-compiler-plugin:
+                ref: 9dfdcbd
                 rationale: >
                     Runtime dependency of apache-commons-parent,
                          fasterxml-oss-parent, felix-parent,
@@ -931,17 +1042,20 @@ data:
                          javapackages-tools.
             # maven-dependency-analyzer-1.7-2.fc28.1
             maven-dependency-analyzer:
+                ref: 65d49e3
                 rationale: >
                     Runtime dependency of maven-dependency-plugin.
                     Build dependency of maven-dependency-plugin.
             # maven-dependency-plugin-3.0.2-1.fc28.1
             maven-dependency-plugin:
+                ref: 974a44e
                 rationale: >
                     Build dependency of apache-commons-logging, javamail,
                          maven, maven-surefire, modello, plexus-classworlds,
                          xmvn.
             # maven-dependency-tree-3.0-4.fc28.1
             maven-dependency-tree:
+                ref: a0eaa3e
                 rationale: >
                     Runtime dependency of maven-dependency-plugin,
                          maven-enforcer, maven-plugin-bundle,
@@ -951,6 +1065,7 @@ data:
                          maven-shade-plugin.
             # maven-doxia-1.7-5.fc28.1
             maven-doxia:
+                ref: 7bef9f5
                 rationale: >
                     Runtime dependency of javacc-maven-plugin,
                          maven-dependency-plugin, maven-doxia-sitetools,
@@ -963,6 +1078,7 @@ data:
                          maven-reporting-impl.
             # maven-doxia-sitetools-1.7.5-1.fc28.1
             maven-doxia-sitetools:
+                ref: 3f1724e
                 rationale: >
                     Runtime dependency of javacc-maven-plugin,
                          maven-dependency-plugin, maven-invoker-plugin,
@@ -973,6 +1089,7 @@ data:
                          maven-surefire.
             # maven-enforcer-1.4.1-6.fc28.1
             maven-enforcer:
+                ref: ab54183
                 rationale: >
                     Runtime dependency of objectweb-pom, plexus-pom.
                     Build dependency of cdi-api, glassfish-jaxb-api, javamail,
@@ -982,6 +1099,7 @@ data:
                          plexus-io, plexus-pom, plexus-utils, qdox.
             # maven-file-management-3.0.0-4.fc28.1
             maven-file-management:
+                ref: 768f1a7
                 rationale: >
                     Runtime dependency of maven-assembly-plugin,
                          maven-dependency-plugin.
@@ -989,6 +1107,7 @@ data:
                          maven-dependency-plugin.
             # maven-filtering-3.1.1-4.fc28.1
             maven-filtering:
+                ref: 334ca57
                 rationale: >
                     Runtime dependency of maven-assembly-plugin,
                          maven-remote-resources-plugin, maven-resources-plugin.
@@ -996,28 +1115,33 @@ data:
                          maven-remote-resources-plugin, maven-resources-plugin.
             # maven-install-plugin-2.5.2-6.fc28.1
             maven-install-plugin:
+                ref: e1a7512
                 rationale: >
                     Build dependency of weld-parent, xmvn.
             # maven-invoker-2.2-6.fc28.1
             maven-invoker:
+                ref: 1015415
                 rationale: >
                     Runtime dependency of maven-invoker-plugin.
                     Build dependency of maven-invoker-plugin,
                          maven-plugin-testing, xmvn.
             # maven-invoker-plugin-1.10-6.fc28.1
             maven-invoker-plugin:
+                ref: 0482828
                 rationale: >
                     Build dependency of maven-dependency-tree,
                          maven-plugin-build-helper, maven-reporting-impl,
                          maven-surefire, qdox.
             # maven-jar-plugin-3.0.2-4.fc28.1
             maven-jar-plugin:
+                ref: 94798b3
                 rationale: >
                     Runtime dependency of apache-commons-parent,
                          fasterxml-oss-parent, geronimo-parent-poms,
                          httpcomponents-project, javapackages-tools.
             # maven-parent-27-4.fc28.1
             maven-parent:
+                ref: 1097f04
                 rationale: >
                     Runtime dependency of maven-doxia, maven-plugins-pom,
                          maven-shared.
@@ -1028,6 +1152,7 @@ data:
                          maven-surefire, maven-wagon, maven2.
             # maven-plugin-build-helper-1.9.1-5.fc28.1
             maven-plugin-build-helper:
+                ref: 75743ec
                 rationale: >
                     Runtime dependency of apache-commons-parent,
                          fasterxml-oss-parent, weld-parent.
@@ -1040,6 +1165,7 @@ data:
                          weld-parent, xmvn.
             # maven-plugin-bundle-3.3.0-2.fc28.1
             maven-plugin-bundle:
+                ref: 5ade5f0
                 rationale: >
                     Runtime dependency of apache-commons-parent,
                          fasterxml-oss-parent, geronimo-parent-poms.
@@ -1061,6 +1187,7 @@ data:
                          spec-version-maven-plugin, testng, xbean.
             # maven-plugin-testing-3.3.0-10.fc28.1
             maven-plugin-testing:
+                ref: 122a945
                 rationale: >
                     Runtime dependency of maven-enforcer.
                     Build dependency of maven-clean-plugin,
@@ -1070,6 +1197,7 @@ data:
                          maven-shared-utils, maven-source-plugin.
             # maven-plugin-tools-3.5-4.fc28.1
             maven-plugin-tools:
+                ref: 47ecfaa
                 rationale: >
                     Runtime dependency of maven-plugins-pom, maven-surefire.
                     Build dependency of aqute-bnd, cal10n, exec-maven-plugin,
@@ -1088,6 +1216,7 @@ data:
                          spec-version-maven-plugin, xmvn.
             # maven-plugins-pom-28-6.fc28.1
             maven-plugins-pom:
+                ref: f145169
                 rationale: >
                     Build dependency of maven-antrun-plugin,
                          maven-assembly-plugin, maven-clean-plugin,
@@ -1098,6 +1227,7 @@ data:
                          maven-source-plugin.
             # maven-remote-resources-plugin-1.5-1.fc28.1
             maven-remote-resources-plugin:
+                ref: 04ae959
                 rationale: >
                     Runtime dependency of apache-parent.
                     Build dependency of apache-parent, apache-resource-bundles,
@@ -1105,6 +1235,7 @@ data:
                          glassfish-legal, google-guice, objenesis.
             # maven-reporting-api-3.0-13.fc28.1
             maven-reporting-api:
+                ref: 1d7a35e
                 rationale: >
                     Runtime dependency of javacc-maven-plugin,
                          maven-dependency-plugin, maven-doxia-sitetools,
@@ -1116,6 +1247,7 @@ data:
                          maven-reporting-impl, maven-surefire.
             # maven-reporting-impl-3.0.0-1.fc28.1
             maven-reporting-impl:
+                ref: a46236d
                 rationale: >
                     Runtime dependency of javacc-maven-plugin,
                          maven-dependency-plugin, maven-invoker-plugin,
@@ -1125,6 +1257,7 @@ data:
                          maven-plugin-tools, maven-surefire.
             # maven-resolver-1.1.0-1.fc28.1
             maven-resolver:
+                ref: 984a96d
                 rationale: >
                     Runtime dependency of maven, maven-artifact-transfer,
                          maven-dependency-tree, xmvn.
@@ -1133,21 +1266,25 @@ data:
                          maven-common-artifact-filters, maven-dependency-tree.
             # maven-resources-plugin-3.0.2-3.fc28.1
             maven-resources-plugin:
+                ref: 7a892eb
                 rationale: >
                     Runtime dependency of javapackages-tools.
                     Build dependency of plexus-component-api.
             # maven-script-interpreter-1.1-10.fc28.1
             maven-script-interpreter:
+                ref: 55829d3
                 rationale: >
                     Runtime dependency of maven-invoker-plugin.
                     Build dependency of maven-invoker-plugin.
             # maven-shade-plugin-3.1.0-1.fc28.1
             maven-shade-plugin:
+                ref: 38087bb
                 rationale: >
                     Build dependency of maven-surefire, maven-wagon, maven2,
                          objenesis.
             # maven-shared-22-5.fc28.1
             maven-shared:
+                ref: 1f70f0b
                 rationale: >
                     Build dependency of maven-archiver,
                          maven-artifact-resolver, maven-artifact-transfer,
@@ -1159,11 +1296,13 @@ data:
                          maven-shared-io, maven-shared-utils, maven-verifier.
             # maven-shared-incremental-1.1-13.fc28.1
             maven-shared-incremental:
+                ref: feaba0c
                 rationale: >
                     Runtime dependency of maven-compiler-plugin.
                     Build dependency of maven-compiler-plugin.
             # maven-shared-io-3.0.0-4.fc28.1
             maven-shared-io:
+                ref: 70bbe5e
                 rationale: >
                     Runtime dependency of maven-assembly-plugin,
                          maven-file-management.
@@ -1171,6 +1310,7 @@ data:
                          maven-file-management.
             # maven-shared-utils-3.1.0-5.fc28.1
             maven-shared-utils:
+                ref: ba5de69
                 rationale: >
                     Runtime dependency of maven, maven-archiver,
                          maven-clean-plugin, maven-common-artifact-filters,
@@ -1187,6 +1327,7 @@ data:
                          maven-shared-io, maven-surefire, maven-verifier.
             # maven-source-plugin-3.0.1-3.fc28.1
             maven-source-plugin:
+                ref: 99d7edc
                 rationale: >
                     Runtime dependency of jboss-parent, weld-parent.
                     Build dependency of aqute-bnd, base64coder, cal10n,
@@ -1198,6 +1339,7 @@ data:
                          snakeyaml, weld-parent, xbean.
             # maven-surefire-2.20.1-3.fc28.1
             maven-surefire:
+                ref: 19a29b8
                 rationale: >
                     Runtime dependency of apache-commons-parent,
                          fasterxml-oss-parent, javapackages-tools,
@@ -1207,10 +1349,12 @@ data:
                          glassfish-el, maven-plugin-tools, maven-surefire.
             # maven-verifier-1.6-5.fc28.1
             maven-verifier:
+                ref: 7675fc6
                 rationale: >
                     Build dependency of maven-surefire.
             # maven-wagon-3.0.0-1.fc28.1
             maven-wagon:
+                ref: 8db41b7
                 rationale: >
                     Runtime dependency of maven, maven-resolver,
                          maven-shared-io, maven2, xmvn.
@@ -1219,6 +1363,7 @@ data:
                          maven2.
             # maven2-2.2.1-56.fc28.1
             maven2:
+                ref: 97af556
                 rationale: >
                     Runtime dependency of exec-maven-plugin, hawtjni,
                          javacc-maven-plugin, maven-antrun-plugin,
@@ -1235,6 +1380,7 @@ data:
                          maven-resources-plugin, plexus-containers.
             # mockito-1.10.19-13.fc28.1
             mockito:
+                ref: e09bd9c
                 rationale: >
                     Runtime dependency of assertj-core, felix-parent,
                          powermock.
@@ -1244,6 +1390,7 @@ data:
                          powermock, replacer.
             # modello-1.9.1-2.fc28.1
             modello:
+                ref: 1a051ed
                 rationale: >
                     Build dependency of maven, maven-assembly-plugin,
                          maven-doxia, maven-doxia-sitetools,
@@ -1252,19 +1399,23 @@ data:
                          maven2, plexus-sec-dispatcher, xmvn.
             # mojo-parent-40-5.fc28.1
             mojo-parent:
+                ref: 5069ab9
                 rationale: >
                     Build dependency of exec-maven-plugin, javacc-maven-plugin,
                          maven-plugin-build-helper.
             # msv-2013.6.1-10.fc28.1
             msv:
+                ref: 70135e0
                 rationale: >
                     Build dependency of dom4j.
             # munge-maven-plugin-1.0-10.fc28.1
             munge-maven-plugin:
+                ref: e83cd0d
                 rationale: >
                     Build dependency of google-guice.
             # objectweb-asm-6.0-1.fc28.1
             objectweb-asm:
+                ref: fb40b7f
                 rationale: >
                     Runtime dependency of cglib, easymock, hawtjni,
                          jdependency, maven-dependency-analyzer,
@@ -1276,40 +1427,48 @@ data:
                          plexus-containers, plexus-languages, xbean, xmvn.
             # objectweb-asm3-3.3.1-15.fc28.1
             objectweb-asm3:
+                ref: 5c27df3
                 rationale: >
                     Build dependency of jdom2, objectweb-asm3.
             # objectweb-pom-1.5-6.fc28.1
             objectweb-pom:
+                ref: 177f094
                 rationale: >
                     Build dependency of objectweb-asm.
             # objenesis-2.6-1.fc28.1
             objenesis:
+                ref: 244bedf
                 rationale: >
                     Runtime dependency of apache-commons-compress, easymock,
                          mockito, powermock.
                     Build dependency of easymock, mockito, powermock.
             # osgi-annotation-6.0.0-6.fc28.1
             osgi-annotation:
+                ref: 128abc4
                 rationale: >
                     Runtime dependency of aqute-bnd.
                     Build dependency of aqute-bnd, osgi-compendium, osgi-core.
             # osgi-compendium-6.0.0-4.fc28.1
             osgi-compendium:
+                ref: 330b95d
                 rationale: >
                     Runtime dependency of aqute-bnd.
                     Build dependency of aqute-bnd.
             # osgi-core-6.0.0-5.fc28.1
             osgi-core:
+                ref: ce3609b
                 rationale: >
                     Runtime dependency of aqute-bnd, maven-plugin-bundle.
                     Build dependency of aqute-bnd, maven-plugin-bundle,
                          osgi-compendium, sisu.
             # plexus-ant-factory-1.0-0.19.a2.2.fc28.1
             plexus-ant-factory:
+                ref: cef3eaa
                 rationale: >
                     Build dependency of maven-plugin-tools.
             # plexus-archiver-3.5-4.fc28.1
             plexus-archiver:
+                ref: 43a552a
                 rationale: >
                     Runtime dependency of hawtjni, maven-archiver,
                          maven-assembly-plugin, maven-dependency-plugin,
@@ -1321,10 +1480,12 @@ data:
                          maven-plugin-tools, maven-source-plugin.
             # plexus-bsh-factory-1.0-0.18.a7.fc28.1
             plexus-bsh-factory:
+                ref: e875ee9
                 rationale: >
                     Build dependency of maven-plugin-tools.
             # plexus-build-api-0.0.7-18.fc28.1
             plexus-build-api:
+                ref: 45a55ff
                 rationale: >
                     Runtime dependency of maven-filtering, maven-plugin-bundle,
                          modello.
@@ -1332,11 +1493,13 @@ data:
                          maven-plugin-bundle, modello.
             # plexus-cipher-1.7-13.fc28.1
             plexus-cipher:
+                ref: 2a740d8
                 rationale: >
                     Runtime dependency of maven, plexus-sec-dispatcher, xmvn.
                     Build dependency of maven, plexus-sec-dispatcher.
             # plexus-classworlds-2.5.2-8.fc28.1
             plexus-classworlds:
+                ref: 4a51f1a
                 rationale: >
                     Runtime dependency of maven, maven-dependency-plugin,
                          plexus-bsh-factory, plexus-component-api,
@@ -1347,26 +1510,31 @@ data:
                          plexus-containers, sisu.
             # plexus-cli-1.6-5.fc28.1
             plexus-cli:
+                ref: 8853cad
                 rationale: >
                     Runtime dependency of plexus-containers.
                     Build dependency of plexus-containers.
             # plexus-compiler-2.8.2-1.fc28.1
             plexus-compiler:
+                ref: 4b93707
                 rationale: >
                     Runtime dependency of maven-compiler-plugin, modello.
                     Build dependency of maven-compiler-plugin, modello.
             # plexus-component-api-1.0-0.23.alpha15.fc28.1
             plexus-component-api:
+                ref: 955fc97
                 rationale: >
                     Runtime dependency of plexus-interactivity.
                     Build dependency of maven-shared-incremental,
                          plexus-interactivity.
             # plexus-component-factories-pom-1.0-0.14.alpha11.fc28.1
             plexus-component-factories-pom:
+                ref: 943fa76
                 rationale: >
                     Build dependency of plexus-ant-factory.
             # plexus-components-pom-1.3.1-9.fc28.1
             plexus-components-pom:
+                ref: ba4211b
                 rationale: >
                     Build dependency of plexus-cli, plexus-compiler,
                          plexus-i18n, plexus-interactivity,
@@ -1374,6 +1542,7 @@ data:
                          plexus-velocity.
             # plexus-containers-1.7.1-3.fc28.1
             plexus-containers:
+                ref: 59ccf2b
                 rationale: >
                     Runtime dependency of maven, maven-artifact-transfer,
                          maven-dependency-analyzer, maven-dependency-tree,
@@ -1404,6 +1573,7 @@ data:
                          plexus-sec-dispatcher, plexus-velocity, sisu, xmvn.
             # plexus-i18n-1.0-0.10.b10.4.fc28.1
             plexus-i18n:
+                ref: 6f05d17
                 rationale: >
                     Runtime dependency of maven-doxia-sitetools,
                          maven-enforcer, maven-invoker-plugin.
@@ -1411,10 +1581,12 @@ data:
                          maven-invoker-plugin.
             # plexus-interactivity-1.0-0.24.alpha6.fc28.1
             plexus-interactivity:
+                ref: a430e4f
                 rationale: >
                     Build dependency of maven-wagon.
             # plexus-interpolation-1.22-8.fc28.1
             plexus-interpolation:
+                ref: 042e0b4
                 rationale: >
                     Runtime dependency of hawtjni, maven, maven-archiver,
                          maven-assembly-plugin, maven-doxia-sitetools,
@@ -1428,6 +1600,7 @@ data:
                          maven2.
             # plexus-io-3.0.0-1.fc28.1
             plexus-io:
+                ref: abcbd1e
                 rationale: >
                     Runtime dependency of hawtjni, maven-assembly-plugin,
                          maven-dependency-plugin, plexus-archiver.
@@ -1435,11 +1608,13 @@ data:
                          maven-dependency-plugin, plexus-archiver.
             # plexus-languages-0.9.3-2.fc28.1
             plexus-languages:
+                ref: 58379ef
                 rationale: >
                     Runtime dependency of maven-compiler-plugin.
                     Build dependency of maven-compiler-plugin.
             # plexus-pom-5.0-1.fc28.1
             plexus-pom:
+                ref: 545b1ec
                 rationale: >
                     Runtime dependency of plexus-component-factories-pom,
                          plexus-components-pom, plexus-containers.
@@ -1449,6 +1624,7 @@ data:
                          plexus-utils.
             # plexus-resources-1.0-0.22.a7.fc28.1
             plexus-resources:
+                ref: 5d37e7c
                 rationale: >
                     Runtime dependency of maven-remote-resources-plugin,
                          spec-version-maven-plugin.
@@ -1456,11 +1632,13 @@ data:
                          spec-version-maven-plugin.
             # plexus-sec-dispatcher-1.4-23.fc28.1
             plexus-sec-dispatcher:
+                ref: d528d16
                 rationale: >
                     Runtime dependency of maven, xmvn.
                     Build dependency of maven.
             # plexus-utils-3.0.24-4.fc28.1
             plexus-utils:
+                ref: 65c4d24
                 rationale: >
                     Runtime dependency of exec-maven-plugin, hawtjni,
                          javacc-maven-plugin, maven, maven-antrun-plugin,
@@ -1504,6 +1682,7 @@ data:
                          sisu-mojos.
             # plexus-velocity-1.2-3.fc28.1
             plexus-velocity:
+                ref: 0c880d4
                 rationale: >
                     Runtime dependency of maven-doxia-sitetools,
                          maven-plugin-tools.
@@ -1511,6 +1690,7 @@ data:
                          maven-plugin-tools.
             # powermock-1.6.5-7.fc28.1
             powermock:
+                ref: 68d703f
                 rationale: >
                     Build dependency of apache-commons-compress,
                          jackson-databind, jline.
@@ -1522,6 +1702,7 @@ data:
                     Build dependency of javapackages-tools.
             # qdox-2.0-0.11.M7.fc28.1
             qdox:
+                ref: b6b0309
                 rationale: >
                     Runtime dependency of hamcrest, maven-plugin-tools,
                          plexus-containers, plexus-languages.
@@ -1529,33 +1710,40 @@ data:
                          plexus-containers, plexus-languages.
             # regexp-1.5-25.fc28.1
             regexp:
+                ref: 71a6b16
                 rationale: >
                     Build dependency of ant, xalan-j2.
             # relaxngDatatype-2011.1-6.fc28.1
             relaxngDatatype:
+                ref: 09ec43c
                 rationale: >
                     Runtime dependency of msv.
                     Build dependency of msv.
             # replacer-1.6-5.fc28.1
             replacer:
+                ref: f9c0623
                 rationale: >
                     Build dependency of jackson-core, jackson-databind,
                          jackson-parent.
             # rhino-1.7.7.1-3.fc28.1
             rhino:
+                ref: d21586d
                 rationale: >
                     Build dependency of bsf.
             # sisu-0.3.3-2.fc28.1
             sisu:
+                ref: 56b78d0
                 rationale: >
                     Runtime dependency of maven, sisu-mojos, xmvn.
                     Build dependency of maven, maven-resolver, sisu-mojos.
             # sisu-mojos-0.3.1-5.fc28.1
             sisu-mojos:
+                ref: 859ea54
                 rationale: >
                     Build dependency of maven, maven-resolver, plexus-cipher.
             # slf4j-1.7.25-2.fc28.1
             slf4j:
+                ref: bd6275b
                 rationale: >
                     Runtime dependency of aqute-bnd, maven,
                          maven-artifact-transfer, maven-wagon, sisu-mojos,
@@ -1565,11 +1753,13 @@ data:
                          sisu, sisu-mojos, xbean.
             # snakeyaml-1.17-4.fc28.1
             snakeyaml:
+                ref: f5f7139
                 rationale: >
                     Runtime dependency of modello, testng.
                     Build dependency of modello, testng.
             # sonatype-oss-parent-7-13.fc28.1
             sonatype-oss-parent:
+                ref: 9ead796
                 rationale: >
                     Build dependency of apache-ivy, base64coder,
                          beust-jcommander, cglib, guava, jaxen, jflex, jline,
@@ -1577,24 +1767,29 @@ data:
                          rhino, sisu-mojos, testng.
             # sonatype-plugins-parent-8-11.fc28.1
             sonatype-plugins-parent:
+                ref: 6d1cf0d
                 rationale: >
                     Build dependency of munge-maven-plugin.
             # spec-version-maven-plugin-1.2-10.fc28.1
             spec-version-maven-plugin:
+                ref: 48d1e37
                 rationale: >
                     Build dependency of glassfish-annotation-api.
             # spice-parent-26-7.fc28.1
             spice-parent:
+                ref: 54f80b9
                 rationale: >
                     Build dependency of plexus-build-api, plexus-cipher,
                          plexus-sec-dispatcher.
             # testng-6.12-2.fc28.1
             testng:
+                ref: 98433eb
                 rationale: >
                     Build dependency of beust-jcommander, cdi-api, dom4j,
                          easymock, hamcrest, maven-surefire, powermock, sisu.
             # velocity-1.7-21.fc28.1
             velocity:
+                ref: 608381a
                 rationale: >
                     Runtime dependency of maven-doxia-sitetools,
                          maven-plugin-tools, maven-remote-resources-plugin,
@@ -1604,10 +1799,12 @@ data:
                          plexus-velocity, snakeyaml.
             # weld-parent-34-4.fc28.1
             weld-parent:
+                ref: aa5e508
                 rationale: >
                     Build dependency of cdi-api.
             # xalan-j2-2.7.1-33.fc28.1
             xalan-j2:
+                ref: 997178a
                 rationale: >
                     Runtime dependency of maven-doxia-sitetools, xerces-j2,
                          xmlunit.
@@ -1615,11 +1812,13 @@ data:
                          maven-doxia-sitetools, xerces-j2, xmlunit.
             # xbean-4.5-8.fc28.1
             xbean:
+                ref: c85251e
                 rationale: >
                     Runtime dependency of hawtjni, plexus-containers.
                     Build dependency of hawtjni, plexus-containers.
             # xerces-j2-2.11.0-30.fc28.1
             xerces-j2:
+                ref: d85e012
                 rationale: >
                     Runtime dependency of ant-contrib, junit-addons, replacer,
                          xalan-j2, xml-stylebook.
@@ -1629,6 +1828,7 @@ data:
                          xmlunit.
             # xml-commons-apis-1.4.01-24.fc28.1
             xml-commons-apis:
+                ref: c28f980
                 rationale: >
                     Runtime dependency of jtidy, maven-doxia-sitetools,
                          xalan-j2, xerces-j2, xml-stylebook, xmlunit.
@@ -1639,30 +1839,36 @@ data:
                          xml-stylebook, xmlunit.
             # xml-commons-resolver-1.2-23.fc28.1
             xml-commons-resolver:
+                ref: 3205e72
                 rationale: >
                     Runtime dependency of msv, xerces-j2.
                     Build dependency of ant, apache-commons-configuration, msv,
                          xerces-j2.
             # xml-stylebook-1.0-0.24.b3_xalan2.svn313293.fc28.1
             xml-stylebook:
+                ref: 7c53647
                 rationale: >
                     Build dependency of xalan-j2.
             # xmlunit-1.6-6.fc28.1
             xmlunit:
+                ref: d2b2c5e
                 rationale: >
                     Runtime dependency of maven-doxia.
                     Build dependency of maven, maven-doxia, xmvn.
             # xmvn-3.0.0-8.fc28.1
             xmvn:
+                ref: 0933175
                 rationale: >
                     Runtime dependency of javapackages-tools.
                     Build dependency of log4j12.
             # xpp3-1.1.4-17.c.fc28.1
             xpp3:
+                ref: 2e4c1ff
                 rationale: >
                     Build dependency of dom4j.
             # xz-java-1.6-4.fc28.1
             xz-java:
+                ref: 7e33378
                 rationale: >
                     Runtime dependency of plexus-archiver.
                     Build dependency of ant, apache-commons-compress,

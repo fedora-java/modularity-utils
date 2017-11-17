@@ -13,7 +13,7 @@ from koschei.backend import koji_util, repo_util, depsolve, repo_cache
 log = logging.getLogger('')
 
 bootstrap = False
-full_refs = False
+full_refs = True
 
 api = ['maven']
 profiles = {'default': ['maven']}
