@@ -547,6 +547,7 @@ data:
                          maven-resolver, maven-wagon.
             # httpcomponents-project-9-1.fc28.1
             httpcomponents-project:
+                buildorder: -1
                 ref: 49e522e
                 rationale: >
                     Build dependency of httpcomponents-client,
@@ -1608,6 +1609,7 @@ data:
                          maven-dependency-plugin, plexus-archiver.
             # plexus-languages-0.9.3-2.fc28.1
             plexus-languages:
+                buildorder: -1
                 ref: 58379ef
                 rationale: >
                     Runtime dependency of maven-compiler-plugin.
