@@ -439,6 +439,7 @@ data:
                     Build dependency of hawtjni, jansi, jansi-native.
             # geronimo-annotation-1.0-21.fc28.1
             geronimo-annotation:
+                buildorder: -1
                 ref: 655709a
                 rationale: >
                     Runtime dependency of maven.
