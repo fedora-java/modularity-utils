@@ -439,7 +439,6 @@ data:
                     Build dependency of hawtjni, jansi, jansi-native.
             # geronimo-annotation-1.0-21.fc28.1
             geronimo-annotation:
-                buildorder: -1
                 ref: 655709a
                 rationale: >
                     Runtime dependency of maven.
@@ -548,7 +547,6 @@ data:
                          maven-resolver, maven-wagon.
             # httpcomponents-project-9-1.fc28.1
             httpcomponents-project:
-                buildorder: -1
                 ref: 49e522e
                 rationale: >
                     Build dependency of httpcomponents-client,
@@ -929,7 +927,6 @@ data:
                          apache-commons-logging, jdom2, slf4j, velocity, xbean.
             # maven-3.5.2-1.fc28.1
             maven:
-                buildorder: 1
                 ref: ce002ad
                 rationale: >
                     Module API.
@@ -1611,7 +1608,6 @@ data:
                          maven-dependency-plugin, plexus-archiver.
             # plexus-languages-0.9.3-2.fc28.1
             plexus-languages:
-                buildorder: -1
                 ref: 58379ef
                 rationale: >
                     Runtime dependency of maven-compiler-plugin.
