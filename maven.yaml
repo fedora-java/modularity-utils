@@ -929,6 +929,7 @@ data:
                          apache-commons-logging, jdom2, slf4j, velocity, xbean.
             # maven-3.5.2-1.fc28.1
             maven:
+                buildorder: 1
                 ref: ce002ad
                 rationale: >
                     Module API.
