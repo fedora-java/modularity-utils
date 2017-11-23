@@ -136,15 +136,16 @@ def get_build_requires(srpms):
 
 # For each SRPM, figure out from which git commit it was built.
 def resolve_refs(srpms):
-    def get_ref(task):
-        log = ks.downloadTaskOutput(task['id'], 'checkout.log')
-        for line in log.decode('utf-8').splitlines():
-            if line.startswith('HEAD is now at'):
-                return line[15:22]
+    def get_ref(children):
+        for task in children:
+            if task['label'] == 'srpm':
+                log = ks.downloadTaskOutput(task['id'], 'checkout.log')
+                for line in log.decode('utf-8').splitlines():
+                    if line.startswith('HEAD is now at'):
+                        return line[15:22]
     builds = koji_util.itercall(ks, list(srpms), lambda ks, srpm: ks.getBuild(parse_nvra(srpm)))
     children_gen = koji_util.itercall(ks, list(builds), lambda ks, build: ks.getTaskChildren(build['task_id']))
-    tasks = [task for children in children_gen for task in children if task['label'] == 'srpm']
-    return {srpm: get_ref(task) for srpm, task in zip(srpms, tasks)}
+    return {srpm: get_ref(children) for srpm, children in zip(srpms, children_gen)}
 
 
 # Do the main work. Recursively resolve requires and build-requires, starting
