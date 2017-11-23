@@ -21,6 +21,7 @@ includes = ['python-lxml', 'byaccj']
 excludes = ['java-1.7.0-openjdk', 'java-1.8.0-openjdk']
 default_ref = None
 frozen_refs = ['python-lxml']
+stream_override = {'java': {'f27': '8'}}
 
 macros = {
     '_with_xmvn_javadoc': 1,
@@ -226,8 +227,9 @@ def work(sack):
         yaml.append('            # BR of xml-stylebook')
         yaml.append('            fonts: master')
     yaml.append('        requires:')
-    yaml.append('            java: {}'.format(stream))
-    yaml.append('            platform: {}'.format(stream))
+    for dep in ('java', 'platform'):
+        dep_stream = stream_override.get(dep, {}).get(stream, stream)
+        yaml.append('            {}: {}'.format(dep, dep_stream))
     yaml.append('    profiles:')
     for k, v in profiles.items():
         yaml.append('        {}:'.format(k))
