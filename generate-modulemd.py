@@ -60,6 +60,9 @@ macros = {
     '_without_testlib': 1,
 }
 
+with open('.git/HEAD') as f:
+    stream = re.match(r'ref: refs/heads/(.*)', f.readlines()[0]).group(1)
+
 config.load_config(['koschei.cfg'], ignore_env=True)
 ks = koji_util.KojiSession()
 
@@ -223,8 +226,8 @@ def work(sack):
         yaml.append('            # BR of xml-stylebook')
         yaml.append('            fonts: master')
     yaml.append('        requires:')
-    yaml.append('            java: master')
-    yaml.append('            platform: master')
+    yaml.append('            java: {}'.format(stream))
+    yaml.append('            platform: {}'.format(stream))
     yaml.append('    profiles:')
     for k, v in profiles.items():
         yaml.append('        {}:'.format(k))
