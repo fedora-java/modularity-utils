@@ -59,6 +59,7 @@ data:
                 %_without_hadoop 1
                 %_without_hsqldb 1
                 %_without_itext 1
+                %_without_jackson 1
                 %_without_jmh 1
                 %_without_jna 1
                 %_without_jpa 1
@@ -83,7 +84,7 @@ data:
                     Runtime dependency of ant-contrib, aqute-bnd, jflex,
                          junit-addons, maven-antrun-plugin,
                          maven-invoker-plugin, maven-script-interpreter,
-                         plexus-ant-factory, replacer.
+                         plexus-ant-factory.
                     Build dependency of ant, ant-contrib, antlr, aopalliance,
                          apache-commons-collections, apache-commons-vfs,
                          apache-ivy, aqute-bnd, bea-stax, bsf, bsh, cglib,
@@ -93,10 +94,10 @@ data:
                          maven-antrun-plugin, maven-invoker-plugin,
                          maven-plugin-tools, maven-script-interpreter, mockito,
                          msv, objectweb-asm, objectweb-asm3,
-                         plexus-ant-factory, plexus-classworlds, regexp,
-                         replacer, rhino, testng, velocity, xalan-j2,
-                         xerces-j2, xml-commons-apis, xml-commons-resolver,
-                         xml-stylebook, xmlunit, xpp3, xz-java.
+                         plexus-ant-factory, plexus-classworlds, regexp, rhino,
+                         testng, velocity, xalan-j2, xerces-j2,
+                         xml-commons-apis, xml-commons-resolver, xml-stylebook,
+                         xmlunit, xpp3, xz-java.
             # ant-contrib-1.0-0.31.b3.fc28.1
             ant-contrib:
                 ref: 21d01bf
@@ -186,14 +187,14 @@ data:
                          maven-doxia-sitetools, maven-invoker-plugin,
                          maven-plugin-testing, maven-resources-plugin,
                          maven-shade-plugin, maven-shared-utils,
-                         maven-surefire, maven-wagon, plexus-io, replacer.
+                         maven-surefire, maven-wagon, plexus-io.
                     Build dependency of jdependency, maven-archiver,
                          maven-assembly-plugin, maven-dependency-plugin,
                          maven-doxia-sitetools, maven-invoker-plugin,
                          maven-plugin-testing, maven-resources-plugin,
                          maven-shade-plugin, maven-shared-utils,
                          maven-surefire, maven-wagon, plexus-archiver,
-                         plexus-io, replacer.
+                         plexus-io.
             # apache-commons-jexl-2.1.1-19.fc28.1
             apache-commons-jexl:
                 ref: 4bcef58
@@ -210,11 +211,11 @@ data:
                 rationale: >
                     Runtime dependency of apache-commons-configuration,
                          maven-dependency-plugin, maven-doxia, maven-enforcer,
-                         replacer, velocity.
+                         velocity.
                     Build dependency of apache-commons-configuration,
                          apache-ivy, maven-dependency-plugin, maven-doxia,
-                         maven-doxia-sitetools, maven-enforcer, replacer,
-                         slf4j, velocity.
+                         maven-doxia-sitetools, maven-enforcer, slf4j,
+                         velocity.
             # apache-commons-lang3-3.7-1.fc28.1
             apache-commons-lang3:
                 ref: e52137a
@@ -388,12 +389,6 @@ data:
                 ref: 0adce2a
                 rationale: >
                     Build dependency of apache-commons-net, joda-time, qdox.
-            # fasterxml-oss-parent-26-5.fc28.1
-            fasterxml-oss-parent:
-                ref: cc83951
-                rationale: >
-                    Runtime dependency of jackson-parent.
-                    Build dependency of jackson-parent.
             # felix-osgi-compendium-1.4.0-25.fc28.1
             felix-osgi-compendium:
                 ref: 275f5d1
@@ -515,7 +510,7 @@ data:
                 rationale: >
                     Runtime dependency of google-guice, maven,
                          maven-shade-plugin, plexus-containers, xmvn.
-                    Build dependency of google-guice, jackson-databind, maven,
+                    Build dependency of google-guice, maven,
                          maven-shade-plugin, plexus-containers.
             # hamcrest-1.3-22.fc28.1
             hamcrest:
@@ -523,7 +518,7 @@ data:
                 rationale: >
                     Runtime dependency of junit, mockito, powermock.
                     Build dependency of junit, maven-resolver,
-                         maven-shared-utils, mockito, powermock, replacer.
+                         maven-shared-utils, mockito, powermock.
             # hawtjni-1.15-2.fc28.1
             hawtjni:
                 ref: e58263f
@@ -556,30 +551,6 @@ data:
                 ref: bdff74a
                 rationale: >
                     Build dependency of jdom2, msv.
-            # jackson-annotations-2.7.6-4.fc28.1
-            jackson-annotations:
-                ref: 4b328d0
-                rationale: >
-                    Runtime dependency of jackson-databind, modello.
-                    Build dependency of jackson-databind, modello.
-            # jackson-core-2.7.6-3.fc28.1
-            jackson-core:
-                ref: 51c57c8
-                rationale: >
-                    Runtime dependency of jackson-databind, modello.
-                    Build dependency of jackson-databind, modello.
-            # jackson-databind-2.7.6-5.fc28.1
-            jackson-databind:
-                ref: 98135e2
-                rationale: >
-                    Runtime dependency of modello.
-                    Build dependency of modello.
-            # jackson-parent-2.7-3.1.fc28.1
-            jackson-parent:
-                ref: a195e0d
-                rationale: >
-                    Build dependency of jackson-annotations, jackson-core,
-                         jackson-databind.
             # jakarta-commons-httpclient-3.1-27.fc28.1
             jakarta-commons-httpclient:
                 ref: 757a273
@@ -645,17 +616,16 @@ data:
                          assertj-core, atinject, base64coder, bcel, bea-stax,
                          beust-jcommander, bsf, bsh, cal10n, cdi-api, cglib,
                          dom4j, easymock, exec-maven-plugin,
-                         fasterxml-oss-parent, felix-osgi-compendium,
-                         felix-osgi-core, felix-osgi-foundation, felix-parent,
-                         felix-utils, forge-parent, fusesource-pom,
-                         geronimo-annotation, geronimo-jms, geronimo-jpa,
-                         geronimo-parent-poms, glassfish-annotation-api,
-                         glassfish-el, glassfish-jaxb-api, glassfish-jsp-api,
+                         felix-osgi-compendium, felix-osgi-core,
+                         felix-osgi-foundation, felix-parent, felix-utils,
+                         forge-parent, fusesource-pom, geronimo-annotation,
+                         geronimo-jms, geronimo-jpa, geronimo-parent-poms,
+                         glassfish-annotation-api, glassfish-el,
+                         glassfish-jaxb-api, glassfish-jsp-api,
                          glassfish-legal, glassfish-master-pom,
                          glassfish-servlet-api, google-guice, guava, hamcrest,
                          hawtjni, httpcomponents-client, httpcomponents-core,
-                         httpcomponents-project, isorelax, jackson-annotations,
-                         jackson-core, jackson-databind, jackson-parent,
+                         httpcomponents-project, isorelax,
                          jakarta-commons-httpclient, jakarta-oro, jansi,
                          jansi-native, java_cup, javacc, javacc-maven-plugin,
                          javamail, javassist, jaxen,
@@ -694,13 +664,12 @@ data:
                          plexus-interactivity, plexus-interpolation, plexus-io,
                          plexus-languages, plexus-pom, plexus-resources,
                          plexus-sec-dispatcher, plexus-utils, plexus-velocity,
-                         powermock, qdox, regexp, relaxngDatatype, replacer,
-                         rhino, sisu, sisu-mojos, slf4j, snakeyaml,
-                         sonatype-oss-parent, sonatype-plugins-parent,
-                         spec-version-maven-plugin, spice-parent, testng,
-                         velocity, weld-parent, xalan-j2, xbean, xerces-j2,
-                         xml-commons-apis, xml-commons-resolver, xmlunit, xmvn,
-                         xpp3, xz-java.
+                         powermock, qdox, regexp, relaxngDatatype, rhino, sisu,
+                         sisu-mojos, slf4j, snakeyaml, sonatype-oss-parent,
+                         sonatype-plugins-parent, spec-version-maven-plugin,
+                         spice-parent, testng, velocity, weld-parent, xalan-j2,
+                         xbean, xerces-j2, xml-commons-apis,
+                         xml-commons-resolver, xmlunit, xmvn, xpp3, xz-java.
                     Build dependency of ant, ant-contrib, antlr, aopalliance,
                          apache-commons-beanutils, apache-commons-cli,
                          apache-commons-codec, apache-commons-collections,
@@ -715,17 +684,16 @@ data:
                          assertj-core, atinject, base64coder, bcel, bea-stax,
                          beust-jcommander, bsf, bsh, cal10n, cdi-api, cglib,
                          dom4j, easymock, exec-maven-plugin,
-                         fasterxml-oss-parent, felix-osgi-compendium,
-                         felix-osgi-core, felix-osgi-foundation, felix-parent,
-                         felix-utils, forge-parent, fusesource-pom,
-                         geronimo-annotation, geronimo-jms, geronimo-jpa,
-                         geronimo-parent-poms, glassfish-annotation-api,
-                         glassfish-el, glassfish-jaxb-api, glassfish-jsp-api,
+                         felix-osgi-compendium, felix-osgi-core,
+                         felix-osgi-foundation, felix-parent, felix-utils,
+                         forge-parent, fusesource-pom, geronimo-annotation,
+                         geronimo-jms, geronimo-jpa, geronimo-parent-poms,
+                         glassfish-annotation-api, glassfish-el,
+                         glassfish-jaxb-api, glassfish-jsp-api,
                          glassfish-legal, glassfish-master-pom,
                          glassfish-servlet-api, google-guice, guava, hamcrest,
                          hawtjni, httpcomponents-client, httpcomponents-core,
-                         httpcomponents-project, isorelax, jackson-annotations,
-                         jackson-core, jackson-databind, jackson-parent,
+                         httpcomponents-project, isorelax,
                          jakarta-commons-httpclient, jakarta-oro, jansi,
                          jansi-native, java_cup, javacc, javacc-maven-plugin,
                          javamail, javassist, jaxen,
@@ -764,13 +732,13 @@ data:
                          plexus-interactivity, plexus-interpolation, plexus-io,
                          plexus-languages, plexus-pom, plexus-resources,
                          plexus-sec-dispatcher, plexus-utils, plexus-velocity,
-                         powermock, qdox, regexp, relaxngDatatype, replacer,
-                         rhino, sisu, sisu-mojos, slf4j, snakeyaml,
-                         sonatype-oss-parent, sonatype-plugins-parent,
-                         spec-version-maven-plugin, spice-parent, testng,
-                         velocity, weld-parent, xalan-j2, xbean, xerces-j2,
-                         xml-commons-apis, xml-commons-resolver, xml-stylebook,
-                         xmlunit, xmvn, xpp3, xz-java.
+                         powermock, qdox, regexp, relaxngDatatype, rhino, sisu,
+                         sisu-mojos, slf4j, snakeyaml, sonatype-oss-parent,
+                         sonatype-plugins-parent, spec-version-maven-plugin,
+                         spice-parent, testng, velocity, weld-parent, xalan-j2,
+                         xbean, xerces-j2, xml-commons-apis,
+                         xml-commons-resolver, xml-stylebook, xmlunit, xmvn,
+                         xpp3, xz-java.
             # javassist-3.18.1-7.fc28.1
             javassist:
                 ref: 019c498
@@ -881,7 +849,6 @@ data:
                          base64coder, bsh, cal10n, cglib, easymock,
                          felix-parent, glassfish-el, hamcrest,
                          httpcomponents-client, httpcomponents-core,
-                         jackson-core, jackson-parent,
                          jakarta-commons-httpclient, jansi-native,
                          javacc-maven-plugin, javamail, javassist, jdependency,
                          jflex, jline, joda-time, junit-addons, log4j12, maven,
@@ -896,9 +863,9 @@ data:
                          mockito, modello, msv, munge-maven-plugin, objenesis,
                          plexus-cipher, plexus-containers,
                          plexus-interpolation, plexus-languages,
-                         plexus-sec-dispatcher, powermock, replacer, sisu,
-                         sisu-mojos, snakeyaml, spec-version-maven-plugin,
-                         testng, velocity, xmlunit, xmvn, xpp3.
+                         plexus-sec-dispatcher, powermock, sisu, sisu-mojos,
+                         snakeyaml, spec-version-maven-plugin, testng,
+                         velocity, xmlunit, xmvn, xpp3.
             # junit-addons-1.4-15.fc28.1
             junit-addons:
                 ref: 120c6df
@@ -946,8 +913,8 @@ data:
                          maven-script-interpreter, maven-shade-plugin,
                          maven-shared-incremental, maven-shared-io,
                          maven-source-plugin, maven-surefire, maven2, modello,
-                         munge-maven-plugin, plexus-containers, replacer,
-                         sisu-mojos, spec-version-maven-plugin, xmvn.
+                         munge-maven-plugin, plexus-containers, sisu-mojos,
+                         spec-version-maven-plugin, xmvn.
                     Build dependency of aqute-bnd, cal10n, exec-maven-plugin,
                          hawtjni, javacc-maven-plugin, maven-antrun-plugin,
                          maven-archiver, maven-artifact-resolver,
@@ -966,7 +933,7 @@ data:
                          maven-shared-incremental, maven-shared-io,
                          maven-shared-utils, maven-source-plugin,
                          maven-surefire, modello, munge-maven-plugin,
-                         plexus-containers, replacer, sisu-mojos,
+                         plexus-containers, sisu-mojos,
                          spec-version-maven-plugin, xmvn.
             # maven-antrun-plugin-1.8-5.fc28.1
             maven-antrun-plugin:
@@ -1036,8 +1003,7 @@ data:
             maven-compiler-plugin:
                 ref: 9dfdcbd
                 rationale: >
-                    Runtime dependency of apache-commons-parent,
-                         fasterxml-oss-parent, felix-parent,
+                    Runtime dependency of apache-commons-parent, felix-parent,
                          geronimo-parent-poms, glassfish-master-pom,
                          javapackages-tools.
             # maven-dependency-analyzer-1.7-2.fc28.1
@@ -1137,8 +1103,8 @@ data:
                 ref: 94798b3
                 rationale: >
                     Runtime dependency of apache-commons-parent,
-                         fasterxml-oss-parent, geronimo-parent-poms,
-                         httpcomponents-project, javapackages-tools.
+                         geronimo-parent-poms, httpcomponents-project,
+                         javapackages-tools.
             # maven-parent-27-4.fc28.1
             maven-parent:
                 ref: 1097f04
@@ -1154,13 +1120,11 @@ data:
             maven-plugin-build-helper:
                 ref: 75743ec
                 rationale: >
-                    Runtime dependency of apache-commons-parent,
-                         fasterxml-oss-parent, weld-parent.
+                    Runtime dependency of apache-commons-parent, weld-parent.
                     Build dependency of apache-commons-logging,
                          apache-commons-net, apache-commons-parent, cdi-api,
-                         easymock, fasterxml-oss-parent, httpcomponents-client,
-                         httpcomponents-core, httpcomponents-project,
-                         jackson-annotations, javamail, joda-time, maven,
+                         easymock, httpcomponents-client, httpcomponents-core,
+                         httpcomponents-project, javamail, joda-time, maven,
                          maven-surefire, msv, slf4j, spec-version-maven-plugin,
                          weld-parent, xmvn.
             # maven-plugin-bundle-3.3.0-2.fc28.1
@@ -1168,23 +1132,23 @@ data:
                 ref: 5ade5f0
                 rationale: >
                     Runtime dependency of apache-commons-parent,
-                         fasterxml-oss-parent, geronimo-parent-poms.
+                         geronimo-parent-poms.
                     Build dependency of apache-commons-compress,
                          apache-commons-parent, assertj-core, base64coder,
                          bcel, beust-jcommander, cdi-api, cglib, easymock,
-                         fasterxml-oss-parent, felix-osgi-compendium,
-                         felix-osgi-core, geronimo-annotation,
-                         geronimo-parent-poms, glassfish-annotation-api,
-                         glassfish-el, glassfish-jaxb-api, glassfish-jsp-api,
+                         felix-osgi-compendium, felix-osgi-core,
+                         geronimo-annotation, geronimo-parent-poms,
+                         glassfish-annotation-api, glassfish-el,
+                         glassfish-jaxb-api, glassfish-jsp-api,
                          glassfish-servlet-api, google-guice, guava,
-                         httpcomponents-client, httpcomponents-core,
-                         jackson-annotations, jansi, jansi-native, javamail,
-                         javassist, jaxen, jboss-interceptors-1.2-api, jline,
-                         joda-convert, jsoup, junit, log4j12, maven-resolver,
-                         msv, objenesis, osgi-annotation, osgi-compendium,
-                         osgi-core, plexus-classworlds, plexus-containers,
-                         plexus-utils, powermock, snakeyaml,
-                         spec-version-maven-plugin, testng, xbean.
+                         httpcomponents-client, httpcomponents-core, jansi,
+                         jansi-native, javamail, javassist, jaxen,
+                         jboss-interceptors-1.2-api, jline, joda-convert,
+                         jsoup, junit, log4j12, maven-resolver, msv, objenesis,
+                         osgi-annotation, osgi-compendium, osgi-core,
+                         plexus-classworlds, plexus-containers, plexus-utils,
+                         powermock, snakeyaml, spec-version-maven-plugin,
+                         testng, xbean.
             # maven-plugin-testing-3.3.0-10.fc28.1
             maven-plugin-testing:
                 ref: 122a945
@@ -1212,7 +1176,7 @@ data:
                          maven-resources-plugin, maven-shade-plugin,
                          maven-source-plugin, maven-surefire, modello,
                          munge-maven-plugin, plexus-component-api,
-                         plexus-containers, replacer, sisu-mojos,
+                         plexus-containers, sisu-mojos,
                          spec-version-maven-plugin, xmvn.
             # maven-plugins-pom-28-6.fc28.1
             maven-plugins-pom:
@@ -1255,9 +1219,9 @@ data:
                     Build dependency of javacc-maven-plugin,
                          maven-dependency-plugin, maven-invoker-plugin,
                          maven-plugin-tools, maven-surefire.
-            # maven-resolver-1.1.0-1.fc28.1
+            # maven-resolver-1.1.0-2.fc28.1
             maven-resolver:
-                ref: 984a96d
+                ref: fa593b9
                 rationale: >
                     Runtime dependency of maven, maven-artifact-transfer,
                          maven-dependency-tree, xmvn.
@@ -1342,8 +1306,7 @@ data:
                 ref: 19a29b8
                 rationale: >
                     Runtime dependency of apache-commons-parent,
-                         fasterxml-oss-parent, javapackages-tools,
-                         maven-plugin-tools.
+                         javapackages-tools, maven-plugin-tools.
                     Build dependency of apache-commons-lang,
                          apache-commons-logging, cdi-api, easymock,
                          glassfish-el, maven-plugin-tools, maven-surefire.
@@ -1387,10 +1350,10 @@ data:
                     Build dependency of assertj-core, felix-osgi-foundation,
                          felix-parent, httpcomponents-client,
                          httpcomponents-core, maven, plexus-languages,
-                         powermock, replacer.
-            # modello-1.9.1-2.fc28.1
+                         powermock.
+            # modello-1.9.1-3.fc28.1
             modello:
-                ref: 1a051ed
+                ref: 8e9ac89
                 rationale: >
                     Build dependency of maven, maven-assembly-plugin,
                          maven-doxia, maven-doxia-sitetools,
@@ -1692,8 +1655,7 @@ data:
             powermock:
                 ref: 68d703f
                 rationale: >
-                    Build dependency of apache-commons-compress,
-                         jackson-databind, jline.
+                    Build dependency of apache-commons-compress, jline.
             # python-lxml-4.1.1-1.fc28.1
             python-lxml:
                 ref: c0ca746
@@ -1719,12 +1681,6 @@ data:
                 rationale: >
                     Runtime dependency of msv.
                     Build dependency of msv.
-            # replacer-1.6-5.fc28.1
-            replacer:
-                ref: f9c0623
-                rationale: >
-                    Build dependency of jackson-core, jackson-databind,
-                         jackson-parent.
             # rhino-1.7.7.1-3.fc28.1
             rhino:
                 ref: d21586d
@@ -1763,8 +1719,8 @@ data:
                 rationale: >
                     Build dependency of apache-ivy, base64coder,
                          beust-jcommander, cglib, guava, jaxen, jflex, jline,
-                         jsch, powermock, qdox, relaxngDatatype, replacer,
-                         rhino, sisu-mojos, testng.
+                         jsch, powermock, qdox, relaxngDatatype, rhino,
+                         sisu-mojos, testng.
             # sonatype-plugins-parent-8-11.fc28.1
             sonatype-plugins-parent:
                 ref: 6d1cf0d
@@ -1820,12 +1776,11 @@ data:
             xerces-j2:
                 ref: d85e012
                 rationale: >
-                    Runtime dependency of ant-contrib, junit-addons, replacer,
-                         xalan-j2, xml-stylebook.
+                    Runtime dependency of ant-contrib, junit-addons, xalan-j2,
+                         xml-stylebook.
                     Build dependency of ant-contrib, apache-commons-jxpath,
                          bea-stax, dom4j, jaxen, jdom, jdom2, junit-addons,
-                         maven-doxia, msv, replacer, xalan-j2, xml-stylebook,
-                         xmlunit.
+                         maven-doxia, msv, xalan-j2, xml-stylebook, xmlunit.
             # xml-commons-apis-1.4.01-24.fc28.1
             xml-commons-apis:
                 ref: c28f980
@@ -1835,7 +1790,7 @@ data:
                     Build dependency of apache-commons-configuration,
                          apache-commons-jxpath, jaxen, jdom2, jtidy,
                          junit-addons, maven-doxia-sitetools,
-                         plexus-classworlds, replacer, xalan-j2, xerces-j2,
+                         plexus-classworlds, xalan-j2, xerces-j2,
                          xml-stylebook, xmlunit.
             # xml-commons-resolver-1.2-23.fc28.1
             xml-commons-resolver:
@@ -1866,9 +1821,9 @@ data:
                 ref: 2e4c1ff
                 rationale: >
                     Build dependency of dom4j.
-            # xz-java-1.6-4.fc28.1
+            # xz-java-1.6-5.fc28.1
             xz-java:
-                ref: 7e33378
+                ref: 9dbc56c
                 rationale: >
                     Runtime dependency of plexus-archiver.
                     Build dependency of ant, apache-commons-compress,

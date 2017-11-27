@@ -44,6 +44,7 @@ macros = {
     '_without_hadoop': 1,
     '_without_hsqldb': 1,
     '_without_itext': 1,
+    '_without_jackson': 1,
     '_without_jmh': 1,
     '_without_jna': 1,
     '_without_jpa': 1,
