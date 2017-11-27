@@ -129,9 +129,10 @@ data:
                          plexus-containers, xmvn.
                     Build dependency of hawtjni, maven, plexus-cli,
                          plexus-containers.
-            # apache-commons-codec-1.10-5.fc28.1
+            # apache-commons-codec-1.11-1.fc28.1
             apache-commons-codec:
-                ref: 2fb3465
+                ref: 826102c
+                buildorder: -1
                 rationale: >
                     Runtime dependency of httpcomponents-client,
                          jakarta-commons-httpclient, maven,
@@ -414,9 +415,10 @@ data:
                     Build dependency of felix-osgi-compendium, felix-osgi-core,
                          felix-osgi-foundation, felix-utils,
                          maven-plugin-bundle.
-            # felix-utils-1.10.2-1.fc28.1
+            # felix-utils-1.10.4-1.fc28.1
             felix-utils:
-                ref: 84f7577
+                ref: 3827261
+                buildorder: -1
                 rationale: >
                     Runtime dependency of maven-plugin-bundle.
                     Build dependency of maven-plugin-bundle.
@@ -814,9 +816,10 @@ data:
                 ref: 9be68d5
                 rationale: >
                     Build dependency of ant, apache-ivy.
-            # jsoup-1.11.1-1.fc28.1
+            # jsoup-1.11.2-1.fc28.1
             jsoup:
-                ref: c20f1a6
+                ref: b3734b4
+                buildorder: -1
                 rationale: >
                     Runtime dependency of maven-wagon, modello.
                     Build dependency of maven-wagon, modello.
