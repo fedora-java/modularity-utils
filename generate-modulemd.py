@@ -104,6 +104,16 @@ def get_build_requires(srpms):
     return koji_util.get_rpm_requires(ks, [parse_nvra(srpm) for srpm in srpms])
 
 
+# Get names of binary RPMs corresponding to given list of source RPMs.
+def get_binary_rpms(srpms):
+    rpm_names = set()
+    builds = koji_util.itercall(ks, list(srpms), lambda ks, srpm: ks.getBuild(parse_nvra(srpm)))
+    rpms_gen = koji_util.itercall(ks, list(builds), lambda ks, build: ks.listRPMs(build['id'], arches=('noarch', 'x86_64')))
+    for rpms in rpms_gen:
+        rpm_names.update([rpm['name'] for rpm in rpms if not rpm['name'].endswith('-debuginfo') and not rpm['name'].endswith('-debugsource')])
+    return rpm_names
+
+
 # For each SRPM, figure out from which git commit it was built.
 def resolve_refs(srpms):
     def get_ref(children):
@@ -141,6 +151,8 @@ def work(sack):
                 combined_br |= set(build_requires)
                 for br in build_requires:
                     add(br_map, br, srpm)
+        if config.get_config('closure'):
+            combined_br.update(get_binary_rpms(srpms_todo))
         java, all = resolve_deps(sack, combined_br)
         srpms_todo |= java
         srpms_todo -= srpms_done
