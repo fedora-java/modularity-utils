@@ -1,3 +1,5 @@
-# maven
+# modularity-utils
 
-Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information.
+Script used to generate modulemd files for some Java modules in Fedora.
+
+This is free software, see the LICENSE file for copying conditions.
