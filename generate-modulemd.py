@@ -181,18 +181,11 @@ def work(sack):
     if bootstrap:
         yaml.append('            bootstrap: master')
     else:
-        yaml.append('            maven: master')
-        yaml.append('            java: master')
-        yaml.append('            platform: master')
-        yaml.append('            # R of hawtjni')
-        yaml.append('            autotools: master')
-        yaml.append('            # BR of python-lxml')
-        yaml.append('            python2: master')
-        yaml.append('            python3: master')
-        yaml.append('            # BR of xml-stylebook')
-        yaml.append('            fonts: master')
+        for dep in config.get_config('buildrequires'):
+            dep_stream = stream_override.get(dep, {}).get(stream, stream)
+            yaml.append('            {}: {}'.format(dep, dep_stream))
     yaml.append('        requires:')
-    for dep in ('java', 'platform'):
+    for dep in config.get_config('requires'):
         dep_stream = stream_override.get(dep, {}).get(stream, stream)
         yaml.append('            {}: {}'.format(dep, dep_stream))
     yaml.append('    profiles:')
