@@ -186,19 +186,35 @@ def work(sack):
 
     api_srpms = {pkg.sourcerpm for pkg in pkgs if pkg.name in api}
 
+    if filtered:
+        for pkg in filtered - get_binary_rpms(srpms_done):
+            log.warning('Filtered RPM {} was not found'.format(pkg))
+
     if config.get_config('filter_unused'):
         filtered.update(get_binary_rpms(srpms_done) - {pkg.name for pkg in pkgs})
+
+    def pretty_rpm_name(rpm):
+        if rpm.name == name(rpm.sourcerpm):
+            return rpm.name
+        else:
+            return '{} (subpackage of {})'.format(rpm.name, name(rpm.sourcerpm))
 
     build_deps = {}
     for br, srpms in br_map.items():
         for dep in our(resolve_builddep(sack, br)):
             for srpm in srpms:
+                if dep.name in filtered:
+                    log.warning('Build dependency broken by filter: component {} BuildRequires "{}", which pulls in filtered RPM {}.'
+                                .format(name(srpm), br, pretty_rpm_name(dep)))
                 add(build_deps, dep.sourcerpm, srpm)
 
     runtime_deps = {}
     for pkg in our(pkgs):
         for reldep in pkg.requires:
             for dep in resolve_reldep(sack, reldep):
+                if dep.name in filtered and pkg.name not in filtered:
+                    log.warning('Runtime dependency broken by filter: package {} Requires "{}", which pulls in filtered RPM {}.'
+                                .format(pretty_rpm_name(pkg), reldep, pretty_rpm_name(dep)))
                 if dep.sourcerpm != pkg.sourcerpm:
                     add(runtime_deps, dep.sourcerpm, pkg.sourcerpm)
 
