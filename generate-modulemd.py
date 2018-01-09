@@ -12,62 +12,24 @@ from koschei.backend import koji_util, repo_util, depsolve, repo_cache
 
 log = logging.getLogger('')
 
-bootstrap = False
-full_refs = True
-
-api = ['maven']
-profiles = {'default': ['maven']}
-includes = ['python-lxml', 'byaccj']
-excludes = ['java-1.7.0-openjdk', 'java-1.8.0-openjdk']
-default_ref = None
-frozen_refs = ['python-lxml']
-stream_override = {'java': {'f27': '8'}}
-
-macros = {
-    '_with_xmvn_javadoc': 1,
-    '_without_asciidoc': 1,
-    '_without_avalon': 1,
-    '_without_bouncycastle': 1,
-    '_without_cython': 1,
-    '_without_dafsa': 1,
-    '_without_desktop': 1,
-    '_without_doxygen': 1,
-    '_without_dtd': 1,
-    '_without_eclipse': 1,
-    '_without_ehcache': 1,
-    '_without_emacs': 1,
-    '_without_equinox': 1,
-    '_without_fop': 1,
-    '_without_ftp': 1,
-    '_without_gradle': 1,
-    '_without_groovy': 1,
-    '_without_hadoop': 1,
-    '_without_hsqldb': 1,
-    '_without_itext': 1,
-    '_without_jackson': 1,
-    '_without_jmh': 1,
-    '_without_jna': 1,
-    '_without_jpa': 1,
-    '_without_logback': 1,
-    '_without_markdown': 1,
-    '_without_memcached': 1,
-    '_without_memoryfilesystem': 1,
-    '_without_obr': 1,
-    '_without_python': 1,
-    '_without_reporting': 1,
-    '_without_scm': 1,
-    '_without_snappy': 1,
-    '_without_spring': 1,
-    '_without_ssh': 1,
-    '_without_testlib': 1,
-}
-
 # Use git repo name and branch for module/stream.
 module = os.path.basename(os.getcwd())
 with open('.git/HEAD') as f:
     stream = re.match(r'ref: refs/heads/(.*)', f.readlines()[0]).group(1)
 
 config.load_config(['koschei.cfg'], ignore_env=True)
+
+bootstrap = config.get_config('bootstrap')
+full_refs = config.get_config('full_refs')
+default_ref = config.get_config('default_ref')
+api = config.get_config('api')
+profiles = config.get_config('profiles')
+includes = config.get_config('includes')
+excludes = config.get_config('excludes')
+frozen_refs = config.get_config('frozen_refs')
+stream_override = config.get_config('stream_override')
+macros = config.get_config('macros')
+
 ks = koji_util.KojiSession()
 
 tag_name = config.get_koji_config('primary', 'tag_name')
