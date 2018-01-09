@@ -22,6 +22,7 @@ config.load_config(['koschei.cfg'], ignore_env=True)
 bootstrap = config.get_config('bootstrap')
 full_refs = config.get_config('full_refs')
 default_ref = config.get_config('default_ref')
+include_build_deps = config.get_config('include_build_deps')
 api = config.get_config('api')
 profiles = config.get_config('profiles')
 includes = config.get_config('includes')
@@ -135,10 +136,11 @@ def work(sack):
                       if name(srpm) not in excludes}
         srpms_done |= srpms_todo
         combined_br = set()
-        for srpm, build_requires in zip(srpms_todo, get_build_requires(srpms_todo)):
-            combined_br |= set(build_requires)
-            for br in build_requires:
-                add(br_map, br, srpm)
+        if include_build_deps:
+            for srpm, build_requires in zip(srpms_todo, get_build_requires(srpms_todo)):
+                combined_br |= set(build_requires)
+                for br in build_requires:
+                    add(br_map, br, srpm)
         java, all = resolve_deps(sack, combined_br)
         srpms_todo |= java
         srpms_todo -= srpms_done
