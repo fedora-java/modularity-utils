@@ -163,6 +163,10 @@ def work(sack):
 
     api_srpms = {pkg.sourcerpm for pkg in pkgs if pkg.name in api}
 
+    filtered = set(config.get_config('filter'))
+    if config.get_config('filter_unused'):
+        filtered.update(get_binary_rpms(srpms_done) - {pkg.name for pkg in pkgs})
+
     build_deps = {}
     for br, srpms in br_map.items():
         for dep in our(resolve_builddep(sack, br)):
@@ -210,10 +214,10 @@ def work(sack):
     yaml.append('        rpms:')
     for p in sorted(api):
         yaml.append('            - {}'.format(p))
-    if config.get_config('filter'):
+    if filtered:
         yaml.append('    filter:')
         yaml.append('        rpms:')
-        for rpm in config.get_config('filter'):
+        for rpm in sorted(filtered):
             yaml.append('            - {}'.format(rpm))
     yaml.append('    buildopts:')
     yaml.append('        rpms:')
