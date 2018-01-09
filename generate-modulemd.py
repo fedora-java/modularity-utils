@@ -198,9 +198,11 @@ def work(sack):
     yaml.append('        rpms:')
     for p in sorted(api):
         yaml.append('            - {}'.format(p))
-    yaml.append('    filter:')
-    yaml.append('        rpms:')
-    yaml.append('            - python2-lxml')
+    if config.get_config('filter'):
+        yaml.append('    filter:')
+        yaml.append('        rpms:')
+        for rpm in config.get_config('filter'):
+            yaml.append('            - {}'.format(rpm))
     yaml.append('    buildopts:')
     yaml.append('        rpms:')
     yaml.append('            macros: |')
