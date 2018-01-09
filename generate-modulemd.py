@@ -62,6 +62,8 @@ macros = {
     '_without_testlib': 1,
 }
 
+# Use git repo name and branch for module/stream.
+module = os.path.basename(os.getcwd())
 with open('.git/HEAD') as f:
     stream = re.match(r'ref: refs/heads/(.*)', f.readlines()[0]).group(1)
 
@@ -283,7 +285,7 @@ def work(sack):
         if srpm in build_deps:
             format_rationale('Build dependency', build_deps[srpm])
 
-    with open('maven.yaml', 'w') as f:
+    with open('{}.yaml'.format(module), 'w') as f:
         for line in yaml:
             print(line, file=f)
 
