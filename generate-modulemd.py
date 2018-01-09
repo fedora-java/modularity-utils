@@ -153,6 +153,7 @@ def resolve_refs(srpms):
 # Do the main work. Recursively resolve requires and build-requires, starting
 # from initial list of seed packages.
 def work(sack):
+    filtered = set(config.get_config('filter'))
     srpms_done = set()
     br_map = {}
     srpms_todo, pkgs = resolve_deps(sack, api)
@@ -174,7 +175,7 @@ def work(sack):
                 for br in build_requires:
                     add(br_map, br, srpm)
         if config.get_config('closure'):
-            combined_br.update(get_binary_rpms(srpms_todo))
+            combined_br.update(get_binary_rpms(srpms_todo) - filtered)
         java, all = resolve_deps(sack, combined_br)
         srpms_todo |= java
         srpms_todo -= srpms_done
@@ -185,7 +186,6 @@ def work(sack):
 
     api_srpms = {pkg.sourcerpm for pkg in pkgs if pkg.name in api}
 
-    filtered = set(config.get_config('filter'))
     if config.get_config('filter_unused'):
         filtered.update(get_binary_rpms(srpms_done) - {pkg.name for pkg in pkgs})
 
