@@ -28,6 +28,9 @@ import re
 import logging
 import koji
 import hawkey
+import jinja2
+
+from textwrap import dedent, fill
 
 from koschei import config
 from koschei.backend import koji_util, repo_util, depsolve, repo_cache
@@ -218,87 +221,107 @@ def work(sack):
                 if dep.sourcerpm != pkg.sourcerpm:
                     add(runtime_deps, dep.sourcerpm, pkg.sourcerpm)
 
-    yaml = list()
-    yaml.append('---')
-    yaml.append('document: modulemd')
-    yaml.append('version: 1')
-    yaml.append('data:')
-    yaml.append('    summary: {}'.format(config.get_config('summary')))
-    yaml.append('    description: >-')
-    for line in config.get_config('description'):
-        yaml.append('        {}'.format(line))
-    yaml.append('    license:')
-    yaml.append('        module:')
-    yaml.append('            - MIT')
-    yaml.append('    dependencies:')
-    yaml.append('        buildrequires:')
-    if bootstrap:
-        yaml.append('            bootstrap: master')
-    else:
-        for dep in config.get_config('buildrequires'):
-            dep_stream = stream_override.get(dep, {}).get(stream, stream)
-            yaml.append('            {}: {}'.format(dep, dep_stream))
-    yaml.append('        requires:')
-    for dep in config.get_config('requires'):
-        dep_stream = stream_override.get(dep, {}).get(stream, stream)
-        yaml.append('            {}: {}'.format(dep, dep_stream))
-    yaml.append('    profiles:')
-    for k, v in profiles.items():
-        yaml.append('        {}:'.format(k))
-        yaml.append('            rpms:')
-        for p in sorted(v):
-            yaml.append('                - {}'.format(p))
-    yaml.append('    api:')
-    yaml.append('        rpms:')
-    for p in sorted(api):
-        yaml.append('            - {}'.format(p))
-    if filtered:
-        yaml.append('    filter:')
-        yaml.append('        rpms:')
-        for rpm in sorted(filtered):
-            yaml.append('            - {}'.format(rpm))
-    yaml.append('    buildopts:')
-    yaml.append('        rpms:')
-    yaml.append('            macros: |')
-    for k, v in macros.items():
-        yaml.append('                %{} {}'.format(k, v))
-    yaml.append('    components:')
-    yaml.append('        rpms:')
-
-    def format_rationale(type, srpms):
-        rt = '                    {} of'.format(type)
-        for srpm in sorted(srpms):
-            r = name(srpm)
-            if len(rt + ' ' + r + ',') >= 80:
-                yaml.append(rt)
-                rt = '                        '
-            rt += ' ' + r + ','
-        rt = rt[:-1] + '.'
-        yaml.append(rt)
-
     log.info('Resolving git refs...')
     if full_refs:
         refs = resolve_refs(srpms_done)
     else:
         refs = resolve_refs([srpm for srpm in srpms_done if name(srpm) in frozen_refs])
 
-    for srpm in sorted(srpms_done):
-        yaml.append('            # {}'.format(srpm[:-8]))
-        yaml.append('            {}:'.format(name(srpm)))
-        ref = refs.get(srpm, default_ref)
-        if ref:
-            yaml.append('                ref: {}'.format(ref))
-        yaml.append('                rationale: >')
-        if srpm in api_srpms:
-            yaml.append('                    Module API.')
-        if srpm in runtime_deps:
-            format_rationale('Runtime dependency', runtime_deps[srpm])
-        if srpm in build_deps:
-            format_rationale('Build dependency', build_deps[srpm])
+    def get_stream(dep):
+        return stream_override.get(dep, {}).get(stream, stream)
+
+    yaml = dedent("""\
+    {% macro format_rationale(type, srpms, cont_indent) %}
+    {% filter wrap(width=(80 - cont_indent)) | indent(cont_indent) %}
+    {{ type }} of {{ sorted(srpms) | map('name') | join(', ') }}.
+    {% endfilter %}
+    {%- endmacro %}
+    ---
+    document: modulemd
+    version: 1
+    data:
+        summary: {{ config.get_config('summary') }}
+        description: >-
+            {% for line in config.get_config('description') %}
+            {{ line }}
+            {% endfor %}
+        license:
+            module:
+                - MIT
+        dependencies:
+            buildrequires:
+                {% if bootstrap %}
+                bootstrap: master
+                {% else %}
+                {% for dep in config.get_config('buildrequires') %}
+                {{ dep }}: {{ get_stream(dep) }}
+                {% endfor %}
+                {% endif %}
+            requires:
+                {% for dep in config.get_config('requires') %}
+                {{ dep }}: {{ get_stream(dep) }}
+                {% endfor %}
+        profiles:
+            {% for profile, content in profiles.items() %}
+            {{ profile }}:
+                rpms:
+                    {% for package in sorted(content) %}
+                    - {{ package }}
+                    {% endfor %}
+            {% endfor %}
+        api:
+            rpms:
+                {% for package in sorted(api) %}
+                - {{ package }}
+                {% endfor %}
+        {% if filtered %}
+        filter:
+            rpms:
+                {% for rpm in sorted(filtered) %}
+                - {{ rpm }}
+                {% endfor %}
+        {% endif %}
+        buildopts:
+            rpms:
+                macros: |
+                    {% for macro, value in macros.items() %}
+                    %{{ macro }} {{ value }}
+                    {% endfor %}
+        components:
+            rpms:
+                {% for srpm in sorted(srpms_done) %}
+                # {{ srpm[:-8] }}
+                {{ srpm | name }}:
+                    {% set ret = refs.get(srpm, default_ref) %}
+                    {% if ref %}
+                    ref: {{ ref }}
+                    {% endif %}
+                    rationale: >
+                        {% if srpm in api_srpms %}
+                        Module API.
+                        {% endif %}
+                        {% if srpm in runtime_deps %}
+                        {{ format_rationale('Runtime dependency', runtime_deps[srpm], 25) }}
+                        {% endif %}
+                        {% if srpm in build_deps %}
+                        {{ format_rationale('Build dependency', build_deps[srpm], 25) }}
+                        {% endif %}
+                {% endfor %}
+    """)
+
+    env = jinja2.Environment(trim_blocks=True, lstrip_blocks=True)
+    env.globals.update(vars(__builtins__))
+    env.globals.update(globals())
+    env.filters['name'] = name
+
+    def wrap(text, width):
+        return fill(text, width, break_on_hyphens=False, break_long_words=False)
+
+    env.filters['wrap'] = wrap
+    content = env.from_string(yaml).render(**locals())
 
     with open('{}.yaml'.format(module), 'w') as f:
-        for line in yaml:
-            print(line, file=f)
+        f.write(content)
 
 
 def main():
