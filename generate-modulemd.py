@@ -22,6 +22,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 # Author: Mikolaj Izdebski <mizdebsk@redhat.com>
+# Author: Michael Simacek <msimacek@redhat.com>
 
 import os
 import re
