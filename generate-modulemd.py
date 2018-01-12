@@ -140,6 +140,26 @@ def get_binary_rpms(srpms):
     return rpm_names
 
 
+def topo_sort(V, E):
+    W = {}
+    i = 1
+    while V:
+        U = set()
+        for v in V:
+            for u in V:
+                if v in E.get(u, ()):
+                    break
+            else:
+                W[v] = i
+                U.add(v)
+        if not U:
+            log.error('There are dependency cycles, topological sort is not possible')
+            return None
+        V = V - U
+        i += 1
+    return W
+
+
 # For each SRPM, figure out from which git commit it was built.
 def resolve_refs(srpms):
     def get_ref(children):
@@ -222,6 +242,9 @@ def work(sack):
                 if dep.sourcerpm != pkg.sourcerpm:
                     add(runtime_deps, dep.sourcerpm, pkg.sourcerpm)
 
+    if config.get_config('topo_sort', False):
+        buildorder = topo_sort(srpms_done, runtime_deps)
+
     log.info('Resolving git refs...')
     if full_refs:
         refs = resolve_refs(srpms_done)
@@ -293,6 +316,9 @@ def work(sack):
                 {% for srpm in sorted(srpms_done) %}
                 # {{ srpm[:-8] }}
                 {{ srpm | name }}:
+                    {% if buildorder is defined %}
+                    buildorder: {{ buildorder[srpm] }}0
+                    {% endif %}
                     {% set ref = refs.get(srpm, default_ref) %}
                     {% if ref %}
                     ref: {{ ref }}
