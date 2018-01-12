@@ -292,7 +292,7 @@ def work(sack):
                 {% for srpm in sorted(srpms_done) %}
                 # {{ srpm[:-8] }}
                 {{ srpm | name }}:
-                    {% set ret = refs.get(srpm, default_ref) %}
+                    {% set ref = refs.get(srpm, default_ref) %}
                     {% if ref %}
                     ref: {{ ref }}
                     {% endif %}
