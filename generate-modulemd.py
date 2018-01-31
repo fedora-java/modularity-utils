@@ -165,12 +165,15 @@ def resolve_refs(srpms):
     def get_ref(children):
         for task in children:
             if task['label'] == 'srpm':
+                match = re.search(r'#([0-9a-f]{7})[0-9a-f]*$', task['request'][0])
+                if match:
+                    return match.group(1)
                 log = ks.downloadTaskOutput(task['id'], 'checkout.log')
                 for line in log.decode('utf-8').splitlines():
                     if line.startswith('HEAD is now at'):
                         return line[15:22]
     builds = koji_util.itercall(ks, list(srpms), lambda ks, srpm: ks.getBuild(parse_nvra(srpm)))
-    children_gen = koji_util.itercall(ks, list(builds), lambda ks, build: ks.getTaskChildren(build['task_id']))
+    children_gen = koji_util.itercall(ks, list(builds), lambda ks, build: ks.getTaskChildren(build['task_id'], request=True))
     return {srpm: get_ref(children) for srpm, children in zip(srpms, children_gen)}
 
 
