@@ -266,9 +266,7 @@ def work(sack):
     data:
         summary: {{ config.get_config('summary') }}
         description: >-
-            {% for line in config.get_config('description') %}
-            {{ line }}
-            {% endfor %}
+    {{ config.get_config('description').rstrip() }}
         license:
             module:
                 - MIT
