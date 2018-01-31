@@ -55,7 +55,7 @@ includes = config.get_config('includes')
 excludes = config.get_config('excludes')
 frozen_refs = config.get_config('frozen_refs')
 stream_override = config.get_config('stream_override')
-macros = config.get_config('macros')
+macros = config.get_config('macros', None)
 
 ks = koji_util.KojiSession()
 
@@ -305,12 +305,14 @@ def work(sack):
                 - {{ rpm }}
                 {% endfor %}
         {% endif %}
+        {% if macros %}
         buildopts:
             rpms:
                 macros: |
                     {% for macro, value in macros.items() %}
                     %{{ macro }} {{ value }}
                     {% endfor %}
+        {% endif %}
         components:
             rpms:
                 {% for srpm in sorted(srpms_done) %}
