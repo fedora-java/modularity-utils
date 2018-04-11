@@ -3,7 +3,7 @@ Generating compose
 
 1. Log into staging composer via SSH.  If you don't have access, join `modularity-wg` group in FAS.
 
-    composer.stg.phx2.fedoraproject.org
+    ssh composer.stg.phx2.fedoraproject.org
 
 2. Clone this git repository.
 
