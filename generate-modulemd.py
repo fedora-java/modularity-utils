@@ -317,7 +317,6 @@ def work(sack):
         components:
             rpms:
                 {% for srpm in sorted(srpms_done) %}
-                # {{ srpm[:-8] }}
                 {{ srpm | name }}:
                     {% if buildorder is defined %}
                     buildorder: {{ buildorder[srpm] }}0
