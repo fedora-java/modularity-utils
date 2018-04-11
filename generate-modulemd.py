@@ -265,7 +265,7 @@ def work(sack):
     {%- endmacro %}
     ---
     document: modulemd
-    version: 1
+    version: 2
     data:
         summary: {{ config.get_config('summary') }}
         description: >-
@@ -274,18 +274,18 @@ def work(sack):
             module:
                 - MIT
         dependencies:
-            buildrequires:
-                {% if bootstrap %}
-                bootstrap: master
-                {% else %}
-                {% for dep in config.get_config('buildrequires') %}
-                {{ dep }}: {{ get_stream(dep) }}
-                {% endfor %}
-                {% endif %}
-            requires:
-                {% for dep in config.get_config('requires') %}
-                {{ dep }}: {{ get_stream(dep) }}
-                {% endfor %}
+            - buildrequires:
+                  {% if bootstrap %}
+                  bootstrap: master
+                  {% else %}
+                  {% for dep in config.get_config('buildrequires') %}
+                  {{ dep }}: {{ get_stream(dep) }}
+                  {% endfor %}
+                  {% endif %}
+              requires:
+                  {% for dep in config.get_config('requires') %}
+                  {{ dep }}: {{ get_stream(dep) }}
+                  {% endfor %}
         profiles:
             {% for profile, content in profiles.items() %}
             {{ profile }}:
