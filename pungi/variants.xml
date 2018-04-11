@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE variants PUBLIC "-//Red Hat, Inc.//DTD Variants info//EN" "variants2012.dtd">
+<variants>
+  <variant id="Buildroot" name="Buildroot" type="variant">
+    <arches>
+      <arch>armhfp</arch>
+      <arch>aarch64</arch>
+      <arch>i386</arch>
+      <arch>ppc64</arch>
+      <arch>ppc64le</arch>
+      <arch>s390x</arch>
+      <arch>x86_64</arch>
+    </arches>
+    <modules>
+      <module>javapackages-tools:201801</module>
+    </modules>
+  </variant>
+  <variant id="Appstream" name="Appstream" type="variant">
+    <arches>
+      <arch>armhfp</arch>
+      <arch>aarch64</arch>
+      <arch>i386</arch>
+      <arch>ppc64</arch>
+      <arch>ppc64le</arch>
+      <arch>s390x</arch>
+      <arch>x86_64</arch>
+    </arches>
+    <modules>
+      <module>ant:1.10</module>
+      <module>maven:3.5</module>
+    </modules>
+  </variant>
+</variants>
