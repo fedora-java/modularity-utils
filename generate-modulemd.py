@@ -34,7 +34,11 @@ import jinja2
 from textwrap import dedent, fill
 
 from koschei import config
-from koschei.backend import koji_util, repo_util, depsolve, repo_cache
+try:
+    from koschei.backend.koji_util import KojiRepoDescriptor
+except ImportError:
+    from koschei.backend.repo_util import KojiRepoDescriptor
+from koschei.backend import koji_util, depsolve, repo_cache
 
 log = logging.getLogger('')
 
@@ -61,7 +65,7 @@ ks = koji_util.KojiSession()
 
 tag_name = config.get_koji_config('primary', 'tag_name')
 repo_id = ks.getRepo(tag_name, state=koji.REPO_READY)['id']
-repo_descriptor = repo_util.KojiRepoDescriptor('primary', tag_name, repo_id)
+repo_descriptor = KojiRepoDescriptor('primary', tag_name, repo_id)
 
 
 # Parse RPM name - split it into NVRA dict
