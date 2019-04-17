@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (c) 2017-2018 Red Hat, Inc.
+# Copyright (c) 2017-2019 Red Hat, Inc.
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -351,9 +351,29 @@ def work(sack):
         f.write(content)
 
 
+# Get set of components contained withing given module/stream in Koji.
+def get_module_components(module, stream=None, version=None):
+    log.info('Querying Koji for content of module {}, stream {}...'.format(module, stream))
+    module_builds = ks.listBuilds(ks.getPackage(module)['id'],
+                                  state=koji.BUILD_STATES['COMPLETE'],
+                                  type='module',
+                                  queryOpts={'order': '-creation_event_id'})
+    for build in module_builds:
+        if ((not stream or build['version'] == stream) and
+            (not version or build['release'] == version)):
+            tag = build['extra']['typeinfo']['module']['content_koji_tag']
+            (_, module_srpms) = ks.listTaggedRPMS(tag, arch='src')
+            return set(srpm['name'] for srpm in module_srpms)
+
+    log.warning('Module module {}, stream {} was not found in Koji'.format(module, stream))
+    return set()
+
+
 def main():
     if not os.path.exists('/tmp/maven-modulemd-gen/repodata'):
         os.makedirs('/tmp/maven-modulemd-gen/repodata')
+    for module_coords in config.get_config('module_excludes', []):
+        excludes.extend(get_module_components(*module_coords))
     log.info('Loading sack...')
     with repo_cache.RepoCache().get_sack(repo_descriptor) as sack:
         work(sack)
