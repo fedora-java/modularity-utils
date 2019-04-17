@@ -244,7 +244,7 @@ def work(sack):
                     add(runtime_deps, dep.sourcerpm, pkg.sourcerpm)
 
     if config.get_config('topo_sort', False):
-        buildorder = topo_sort(srpms_done, runtime_deps)
+        buildorder = topo_sort(srpms_done, {**runtime_deps, **build_deps})
 
     log.info('Resolving git refs...')
     if full_refs:
