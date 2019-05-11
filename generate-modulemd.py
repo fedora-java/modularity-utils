@@ -49,7 +49,6 @@ with open('.git/HEAD') as f:
 
 config.load_config(['koschei.cfg'], ignore_env=True)
 
-bootstrap = config.get_config('bootstrap')
 full_refs = config.get_config('full_refs')
 default_ref = config.get_config('default_ref')
 include_build_deps = config.get_config('include_build_deps')
@@ -273,13 +272,9 @@ def work(sack):
                 - MIT
         dependencies:
             - buildrequires:
-                  {% if bootstrap %}
-                  bootstrap: master
-                  {% else %}
                   {% for dep in config.get_config('buildrequires') %}
                   {{ dep }}: {{ get_stream(dep) }}
                   {% endfor %}
-                  {% endif %}
               requires:
                   {% for dep in config.get_config('requires') %}
                   {{ dep }}: {{ get_stream(dep) }}
