@@ -24,17 +24,29 @@
 # Author: Marian Koncek <mkoncek@redhat.com>
 
 import datetime
+import json
 import koji
+import os
 import re
 import requests
 import rpm
+import time
 
 from concurrent.futures import ThreadPoolExecutor as thread_pool
 
+################################################################################
+
+# If the cache file is older than this time, regenerate it
+upstream_cache_interval = 1 * 60 * 60
+upstream_cache_path = "/tmp/pkg-versions-upstream-cache.json"
+
 fedora_releases = ["f28", "f29", "f30", "f31"]
 releases = fedora_releases + ["mbi", "upstream"]
+
 mbi_index = len(fedora_releases)
 upstream_index = mbi_index + 1
+
+################################################################################
 
 def get_packages() -> [str]:
 	ks = koji.ClientSession("https://koji.kjnet.xyz/kojihub")
@@ -62,10 +74,42 @@ def get_upstream_versions(package_names: [str]) -> {str: str}:
 	
 	for package_name in package_names:
 		futures.append(pool.submit(get_upstream_version, package_name))
-		
+	
 	for package_name, project_version in zip(package_names, futures):
 		result[package_name] = project_version.result()
+	
+	return result
+
+def read_json(filename: str) -> {str: str}:
+	with open(filename, "r") as cache:
+		return json.load(cache)
+
+def write_json_timestamp(filename: str, packages: {str: str}):
+	with open(filename, "w") as cache:
+		result = {"time-retrieved": time.time(), "packages": packages}
+		json.dump(result, cache, indent = 0)
+		cache.write("\n")
+
+def get_upstream_versions_cached(cache_path: str, package_names: [str]) -> {str: str}:
+	update_cache = False
+	result = {}
+	
+	if not os.path.exists(cache_path):
+		update_cache = True
 		
+	else:
+		cache = read_json(cache_path)
+		
+		if time.time() - cache["time-retrieved"] > upstream_cache_interval:
+			update_cache = True
+		
+		else:
+			result = cache["packages"]
+	
+	if update_cache:
+		result = get_upstream_versions(package_names)
+		write_json_timestamp(cache_path, result)
+	
 	return result
 
 def get_koji_versions(package_names: [str], url: str, tag: str) -> {str : str}:
@@ -93,7 +137,7 @@ def get_all_versions() -> {str: []}:
 	
 	package_names = get_packages()
 	
-	upstream = get_upstream_versions(package_names)
+	upstream = get_upstream_versions_cached(upstream_cache_path, package_names)
 	mbi = get_mbi_versions(package_names)
 	releases = {}
 	
@@ -102,17 +146,17 @@ def get_all_versions() -> {str: []}:
 	
 	for release in fedora_releases:
 		futures.append(pool.submit(get_fedora_versions, package_names, release))
-		
+	
 	for release, release_versions in zip(fedora_releases, futures):
 		releases[release] = release_versions.result()
-		
+	
 	for package_name in package_names:
 		result[package_name] = []
 		for release in fedora_releases:
 			result[package_name].append(releases[release][package_name])
 		result[package_name].append(mbi[package_name])
 		result[package_name].append(upstream[package_name])
-		
+	
 	return result
 
 def version_compare(left: str, right: str) -> int:
@@ -130,16 +174,16 @@ def row_to_str(versions : [str]) -> str:
 		while fedora_index + 1 < mbi_index and version_compare(versions[fedora_index], versions[fedora_index + 1]) == 0:
 			colspan += 1
 			fedora_index += 1
-			
+		
 		html_class = "fedora"
 		result += '<td '
 		
 		if colspan > 1:
 			result += 'colspan="' + str(colspan) + '" '
-			
+		
 		result += 'class="' + html_class + '">' + versions[fedora_index] + '</td>\n'
 		fedora_index += 1
-		
+	
 	html_class = "mbi"
 	result += '<td class="' + html_class + '">' + versions[mbi_index] + '</td>\n'
 	
@@ -155,6 +199,8 @@ def row_to_str(versions : [str]) -> str:
 	result += '<td class="' + html_class + '">' + versions[upstream_index] + '</td>\n'
 	
 	return result
+
+################################################################################
 
 versions_all = get_all_versions()
 
