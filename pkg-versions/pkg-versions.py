@@ -80,7 +80,7 @@ def get_koji_versions(package_names: [str], url: str, tag: str) -> {str : str}:
 	for pkg in package_names:
 		ks.listTagged(tag, package=pkg, latest=True)
 	result = {}
-	for builds in ks.multiCall(strict=True)[0]:
+	for [builds] in ks.multiCall(strict=True):
 		if builds:
 			result[builds[0]['package_name']] = builds[0]['version']
 	for package_name in package_names:
