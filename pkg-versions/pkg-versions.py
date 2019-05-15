@@ -76,8 +76,13 @@ def get_upstream_versions(package_names: [str]) -> {str: str}:
 
 def get_koji_versions(package_names: [str], url: str, tag: str) -> {str : str}:
 	ks = koji.ClientSession(url)
-	result = {build["package_name"]: build["version"] for build in
-		filter(lambda buildinfo: buildinfo["package_name"] in package_names, ks.listTagged(tag, latest = True))}
+	ks.multicall = True
+	for pkg in package_names:
+		ks.listTagged(tag, package=pkg, latest=True)
+	result = {}
+	for builds in ks.multiCall(strict=True)[0]:
+		if builds:
+			result[builds[0]['package_name']] = builds[0]['version']
 	for package_name in package_names:
 		if package_name not in result.keys():
 			result[package_name] = str()
