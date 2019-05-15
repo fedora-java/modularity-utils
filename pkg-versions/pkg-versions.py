@@ -36,12 +36,6 @@ releases = fedora_releases + ["mbi", "upstream"]
 mbi_index = len(fedora_releases)
 upstream_index = mbi_index + 1
 
-exceptions = list()
-
-with open("exceptions", "r") as exception_file:
-	for line in exception_file.readlines():
-		exceptions.append(line)
-
 def get_packages() -> [str]:
 	ks = koji.ClientSession("https://koji.kjnet.xyz/kojihub")
 	return sorted([package["package_name"] for package in filter(lambda package: not package["blocked"], ks.listPackages("jp"))])
@@ -174,10 +168,7 @@ with open("versions-" + datetime.datetime.now().strftime("%G-%m-%d_%H:%M:%S") + 
 	
 	for pkg_name, version_list in versions_all.items():
 		table.write('<tr>\n')
-		table.write('<td')
-		if pkg_name in exceptions:
-			table.write(' class=exception')
-		table.write('>' + pkg_name + '</td>\n')
+		table.write('<td>' + pkg_name + '</td>\n')
 		table.write(row_to_str(version_list))
 		table.write('</tr>\n')
 	table.write('</table>\n')
