@@ -23,7 +23,6 @@
 #
 # Author: Marian Koncek <mkoncek@redhat.com>
 
-import datetime
 import json
 import koji
 import os
@@ -204,7 +203,7 @@ def row_to_str(versions : [str]) -> str:
 
 versions_all = get_all_versions()
 
-with open("versions-" + datetime.datetime.now().strftime("%G-%m-%d_%H:%M:%S") + ".html", "w") as table:
+with open("versions.html", "w") as table:
 	table.write('<link rel=stylesheet href=mystyle.css>')
 	table.write('<table style="width:100%">\n')
 	table.write('<th>' + 'Package name' + '</th>')
