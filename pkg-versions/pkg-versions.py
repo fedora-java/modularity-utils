@@ -193,7 +193,7 @@ def row_to_str(versions : [str]) -> str:
 		html_class = "up-to-date"
 	elif compare_value < 0:
 		html_class = "downgrade"
-	elif compare_value > 1:
+	elif compare_value > 0:
 		html_class = "mbi-newer"
 	result += '<td class="' + html_class + '">' + versions[upstream_index] + '</td>\n'
 	
