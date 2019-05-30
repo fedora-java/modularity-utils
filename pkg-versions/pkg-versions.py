@@ -158,8 +158,46 @@ def get_all_versions() -> {str: []}:
 	
 	return result
 
+def normalize_version(version: str) -> str:
+	if not version:
+		return ""
+	
+	version_name = version[:]
+	version_name = version_name.replace("_", ".")
+	version_name = version_name.replace("-", ".")
+	
+	# Match classical version symbols (numbers and dot)
+	match = re.match("([.0-9]*[0-9]+)(.*)", version_name)
+	
+	if not match:
+		raise BaseException("Invalid version name: " + version_name)
+	
+	leading = match.group(1)
+	trailing = match.group(2)
+	
+	if trailing == ".Final":
+		return leading
+	
+	# If the proper version is followed by a single letter, keep it
+	# Use tilde split otherwise
+	if not re.match("^[a-zA-Z]$", trailing):
+		if trailing:
+			if trailing.startswith((".", "~")):
+				trailing = trailing[1:]
+			
+			# Service pack post-release should not use pre-release tilde
+			if trailing.startswith("SP"):
+				trailing = "." + trailing
+			
+			else:
+				trailing = "~" + trailing
+		
+		trailing = trailing.replace("-", ".")
+	
+	return leading + trailing
+
 def version_compare(left: str, right: str) -> int:
-	return rpm.labelCompare(("", left, ""), ("", right, ""))
+	return rpm.labelCompare(("", normalize_version(left), ""), ("", normalize_version(right), ""))
 
 def row_to_str(versions : [str]) -> str:
 	assert(len(versions) == len(releases))
@@ -200,6 +238,41 @@ def row_to_str(versions : [str]) -> str:
 	return result
 
 ################################################################################
+
+# Tests
+
+assert(normalize_version("") == "")
+assert(normalize_version("1.0b3") == "1.0~b3")
+assert(normalize_version("2.5.0-rc1") == "2.5.0~rc1")
+assert(normalize_version("2.0b6") == "2.0~b6")
+assert(normalize_version("2.0.SP1") == "2.0.SP1")
+assert(normalize_version("3_2_12") == "3.2.12")
+assert(normalize_version("1.0-20050927.133100") == "1.0.20050927.133100")
+assert(normalize_version("3.0.1-b11") == "3.0.1~b11")
+assert(normalize_version("5.0.1-b04") == "5.0.1~b04")
+assert(normalize_version("0.11b") == "0.11b")
+assert(normalize_version("1_6_2") == "1.6.2")
+assert(normalize_version("1.0.1.Final") == "1.0.1")
+assert(normalize_version("3.0.0.M1") == "3.0.0~M1")
+assert(normalize_version("6.0-alpha-2") == "6.0~alpha.2")
+assert(normalize_version("4.13-beta-1") == "4.13~beta.1")
+assert(normalize_version("5.5.0-M1") == "5.5.0~M1")
+assert(normalize_version("3.0.0-M2") == "3.0.0~M2")
+assert(normalize_version("3.0.0-M1") == "3.0.0~M1")
+assert(normalize_version("3.0.0-M3") == "3.0.0~M3")
+assert(normalize_version("3.0.0-beta.1") == "3.0.0~beta.1")
+assert(normalize_version("1.0-alpha-2.1") == "1.0~alpha.2.1")
+assert(normalize_version("1.0-alpha-8") == "1.0~alpha.8")
+assert(normalize_version("1.0-alpha-18") == "1.0~alpha.18")
+assert(normalize_version("1.0-alpha-10") == "1.0~alpha.10")
+assert(normalize_version("1.0-beta-7") == "1.0~beta.7")
+assert(normalize_version("1.0-alpha-5") == "1.0~alpha.5")
+assert(normalize_version("2.0-M10") == "2.0~M10")
+assert(normalize_version("7.0.0-beta4") == "7.0.0~beta4")
+
+################################################################################
+
+# Main function
 
 versions_all = get_all_versions()
 
