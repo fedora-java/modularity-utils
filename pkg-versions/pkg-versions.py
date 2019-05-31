@@ -278,7 +278,7 @@ versions_all = get_all_versions()
 
 with open("versions.html", "w") as table:
 	table.write('<link rel=stylesheet href=mystyle.css>')
-	table.write('<table style="width:100%">\n')
+	table.write('<table>\n')
 	table.write('<th>' + 'Package name' + '</th>')
 	
 	for header_name in releases:
