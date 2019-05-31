@@ -137,6 +137,7 @@ def get_all_versions() -> {str: []}:
 	package_names = get_packages()
 	
 	upstream = get_upstream_versions_cached(upstream_cache_path, package_names)
+	upstream = {package: normalize_version(version) for package, version in upstream.items()}
 	mbi = get_mbi_versions(package_names)
 	releases = {}
 	
@@ -197,7 +198,7 @@ def normalize_version(version: str) -> str:
 	return leading + trailing
 
 def version_compare(left: str, right: str) -> int:
-	return rpm.labelCompare(("", normalize_version(left), ""), ("", normalize_version(right), ""))
+	return rpm.labelCompare(("", left, ""), ("", right, ""))
 
 def row_to_str(versions : [str]) -> str:
 	assert(len(versions) == len(releases))
