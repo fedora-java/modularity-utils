@@ -26,6 +26,7 @@
 import json
 import koji
 import os
+import pypandoc
 import re
 import requests
 import rpm
@@ -44,6 +45,8 @@ releases = fedora_releases + ["mbi", "upstream"]
 
 mbi_index = len(fedora_releases)
 upstream_index = mbi_index + 1
+
+thread_pool_size = 30
 
 ################################################################################
 
@@ -68,7 +71,7 @@ def get_upstream_version(package_name: str) -> str:
 def get_upstream_versions(package_names: [str]) -> {str: str}:
 	result = {}
 	
-	pool = thread_pool(30)
+	pool = thread_pool(thread_pool_size)
 	futures = list()
 	
 	for package_name in package_names:
@@ -238,6 +241,33 @@ def row_to_str(versions : [str]) -> str:
 	
 	return result
 
+def get_comments(package_names: [str]) -> {str : str}:
+	request = requests.get("https://pagure.io/java-pkg-versions-comments/raw/master/f/comments.md")
+	
+	if request.status_code != 200:
+		raise RuntimeError("Could not obtain the comments")
+	
+	result = {package_name: "" for package_name in package_names}
+	name = str()
+	content = str()
+
+	for line in request.text.splitlines():
+		if line.startswith("#"):
+			name = line[1:].strip()
+		elif line.startswith("---"):
+			if name:
+				final_content = pypandoc.convert_text(content, format = "markdown", to = "docbook")
+				final_content = final_content.replace("  ", " ")
+				final_content = final_content.replace("\n", "")
+				final_content = final_content[7:-7]
+				result[name] = final_content
+			name = str()
+			content = str()
+		elif name:
+			content += line
+		
+	return result
+
 ################################################################################
 
 # Tests
@@ -276,18 +306,40 @@ assert(normalize_version("7.0.0-beta4") == "7.0.0~beta4")
 # Main function
 
 versions_all = get_all_versions()
+comments_all = get_comments(versions_all.keys())
 
 with open("versions.html", "w") as table:
 	table.write('<link rel=stylesheet href=mystyle.css>')
 	table.write('<table>\n')
 	table.write('<th>' + 'Package name' + '</th>')
+	table.write('<th>' + 'Links' + '</th>')
 	
 	for header_name in releases:
 		table.write('<th>' + header_name + '</th>')
 	
+	table.write('<th>' + 'Comment' + '</th>')
+	
 	for pkg_name, version_list in versions_all.items():
 		table.write('<tr>\n')
+		
+		# Name
 		table.write('<td>' + pkg_name + '</td>\n')
+		table.write('<td>\n')
+		
+		# Links
+		table.write('MBI\n')
+		table.write('<a href="https://src.fedoraproject.org/fork/mbi/rpms/' + pkg_name + '" target="_blank">(dist-git)</a>\n')
+		table.write('<a href="https://koji.kjnet.xyz/koji/packageinfo?packageID=' + pkg_name + '" target="_blank">(Koji)</a>\n')
+		table.write('<a href="https://koschei.kjnet.xyz/koschei/package/' + pkg_name + '?collection=jp" target="_blank">(Koschei)</a>\n')
+		table.write('</td>\n')
+		
+		# Versions
 		table.write(row_to_str(version_list))
+		
+		# Comment
+		table.write('<td>\n')
+		table.write(comments_all[pkg_name])
+		table.write('</td>\n')
+		
 		table.write('</tr>\n')
 	table.write('</table>\n')
