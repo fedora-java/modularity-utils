@@ -311,35 +311,36 @@ comments_all = get_comments(versions_all.keys())
 with open("versions.html", "w") as table:
 	table.write('<link rel=stylesheet href=mystyle.css>')
 	table.write('<table>\n')
+	
 	table.write('<th>' + 'Package name' + '</th>')
 	
 	for header_name in releases:
 		table.write('<th>' + header_name + '</th>')
 	
-	table.write('<th>' + 'Links' + '</th>')
-	
 	table.write('<th>' + 'Comment' + '</th>')
+	
+	table.write('<th>' + 'Links' + '</th>')
 	
 	for pkg_name, version_list in versions_all.items():
 		table.write('<tr>\n')
 		
 		# Package name
 		table.write('<td>' + pkg_name + '</td>\n')
-		table.write('<td>\n')
 		
 		# Versions
 		table.write(row_to_str(version_list))
 		
-		# Links
-		table.write('MBI\n')
-		table.write('<a href="https://src.fedoraproject.org/fork/mbi/rpms/' + pkg_name + '" target="_blank">(dist-git)</a>\n')
-		table.write('<a href="https://koji.kjnet.xyz/koji/packageinfo?packageID=' + pkg_name + '" target="_blank">(Koji)</a>\n')
-		table.write('<a href="https://koschei.kjnet.xyz/koschei/package/' + pkg_name + '?collection=jp" target="_blank">(Koschei)</a>\n')
-		table.write('</td>\n')
-		
 		# Comment
 		table.write('<td>\n')
 		table.write(comments_all[pkg_name])
+		table.write('</td>\n')
+		
+		# Links
+		table.write('<td>\n')
+		table.write('MBI\n')
+		table.write('(<a href="https://src.fedoraproject.org/fork/mbi/rpms/' + pkg_name + '" target="_blank">dist-git</a>)\n')
+		table.write('(<a href="https://koji.kjnet.xyz/koji/packageinfo?packageID=' + pkg_name + '" target="_blank">Koji</a>)\n')
+		table.write('(<a href="https://koschei.kjnet.xyz/koschei/package/' + pkg_name + '?collection=jp" target="_blank">Koschei</a>)\n')
 		table.write('</td>\n')
 		
 		table.write('</tr>\n')
