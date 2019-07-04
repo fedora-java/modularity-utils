@@ -26,7 +26,7 @@
 import json
 import koji
 import os
-import pypandoc
+import markdown2
 import re
 import requests
 import rpm
@@ -254,15 +254,15 @@ def get_comments(package_names: [str]) -> {str : str}:
 	for line in request.text.splitlines():
 		if line.startswith("#"):
 			name = line[1:].strip()
-		elif line.startswith("---"):
+		
+		# End of the content for the current package name
+		elif line.startswith("---") or (line.startswith("#") and name):
 			if name:
-				final_content = pypandoc.convert_text(content, format = "markdown", to = "docbook")
-				final_content = final_content.replace("  ", " ")
-				final_content = final_content.replace("\n", "")
-				final_content = final_content[7:-7]
-				result[name] = final_content
+				match = re.match("<p>(.*)</p>\\w*", markdown2.markdown(content))
+				result[name] = match.group(1)
 			name = str()
 			content = str()
+		
 		elif name:
 			content += line
 		
