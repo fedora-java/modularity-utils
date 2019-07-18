@@ -203,7 +203,7 @@ def normalize_version(version: str) -> str:
 def version_compare(left: str, right: str) -> int:
 	return rpm.labelCompare(("", left, ""), ("", right, ""))
 
-def row_to_str(versions : [str]) -> str:
+def row_to_str(versions : [str], tags : {str : str}) -> str:
 	assert(len(versions) == len(releases))
 	
 	result = str()
@@ -229,44 +229,59 @@ def row_to_str(versions : [str]) -> str:
 	result += '<td class="' + html_class + '">' + versions[mbi_index] + '</td>\n'
 	
 	compare_value = version_compare(versions[mbi_index], versions[upstream_index])
+	
 	if versions[upstream_index] == "":
 		html_class = "unknown-version"
+	elif "correct_version" in tags and version_compare(versions[mbi_index], tags["correct_version"]) == 0:
+		html_class = "correct_version"
 	elif compare_value == 0:
 		html_class = "up-to-date"
 	elif compare_value < 0:
 		html_class = "downgrade"
 	elif compare_value > 0:
 		html_class = "mbi-newer"
+	
 	result += '<td class="' + html_class + '">' + versions[upstream_index] + '</td>\n'
 	
 	return result
 
-def get_comments(package_names: [str]) -> {str : str}:
-	request = requests.get("https://pagure.io/java-pkg-versions-comments/raw/master/f/comments.md")
+def get_comments(package_names: [str]) -> ({str : str}, {str : {str : str}}):
+	request = requests.get(
+		"https://pagure.io/java-pkg-versions-comments/raw/master/f/comments.md",
+		timeout = 7)
 	
 	if request.status_code != 200:
 		raise RuntimeError("Could not obtain the comments")
 	
 	result = {package_name: "" for package_name in package_names}
+	tags = {package_name: "" for package_name in package_names}
 	name = str()
-	content = str()
+	comment = str()
 
 	for line in request.text.splitlines():
-		if line.startswith("#"):
+		# A new package name
+		if line.startswith("#") and not line.startswith("##"):
 			name = line[1:].strip()
+			tags[name] = dict()
 		
-		# End of the content for the current package name
-		elif line.startswith("---") or (line.startswith("#") and name):
+		# A new tag
+		elif line.startswith("##"):
 			if name:
-				match = re.match("<p>(.*)</p>\\w*", markdown2.markdown(content))
+				match = re.match("##\\s*(.*?)\\s*:\\s*(.*)", line)
+				tags[name][match.group(1)] = match.group(2).rstrip()
+		
+		# End of the comment for the current package name
+		elif line.startswith("---") or (line.startswith("#") and not line.startswith("##") and name):
+			if name:
+				match = re.match("<p>(.*)</p>\\s*", markdown2.markdown(comment), re.DOTALL)
 				result[name] = match.group(1)
 			name = str()
-			content = str()
+			comment = str()
 		
 		elif name:
-			content += line
-		
-	return result
+			comment += line
+	
+	return result, tags
 
 ################################################################################
 
@@ -306,7 +321,7 @@ assert(normalize_version("7.0.0-beta4") == "7.0.0~beta4")
 # Main function
 
 versions_all = get_all_versions()
-comments_all = get_comments(versions_all.keys())
+comments_all, tags_all = get_comments(versions_all.keys())
 
 with open("versions.html", "w") as table:
 	table.write('<link rel=stylesheet href=mystyle.css>')
@@ -328,7 +343,7 @@ with open("versions.html", "w") as table:
 		table.write('<td>' + pkg_name + '</td>\n')
 		
 		# Versions
-		table.write(row_to_str(version_list))
+		table.write(row_to_str(version_list, tags_all[pkg_name]))
 		
 		# Comment
 		table.write('<td>\n')

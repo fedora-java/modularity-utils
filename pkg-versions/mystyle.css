@@ -1,4 +1,5 @@
 .downgrade{font-weight:bold;color:red}
 .mbi-newer{font-weight:bold;color:blue}
+.correct_version{font-weight:bold;color:green}
 table, th, td { border: 1px solid black; }
 tr:hover { background-color: lightblue; }
