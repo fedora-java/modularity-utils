@@ -321,8 +321,18 @@ assert(normalize_version("7.0.0-beta4") == "7.0.0~beta4")
 
 # Main function
 
-versions_all = get_all_versions()
-comments_all, tags_all = get_comments(versions_all.keys())
+versions_all = None
+comments_all = None
+tags_all = None
+
+# Retry a few times if an exception occurs
+for i in range(3):
+	try:
+		versions_all = get_all_versions() if versions_all is None else versions_all
+		comments_all, tags_all = get_comments(versions_all.keys())
+		break
+	except:
+		continue
 
 with open("versions.html", "w") as table:
 	table.write('<link rel=stylesheet href=mystyle.css>')
