@@ -25,8 +25,8 @@
 
 import json
 import koji
-import os
 import markdown2
+import os
 import re
 import requests
 import rpm
@@ -280,6 +280,7 @@ def get_comments(package_names: [str]) -> ({str : str}, {str : {str : str}}):
 		
 		elif name:
 			comment += line
+			comment += "\n"
 	
 	return result, tags
 
