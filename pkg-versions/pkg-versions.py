@@ -232,8 +232,8 @@ def row_to_str(versions : [str], tags : {str : str}) -> str:
 	
 	if versions[upstream_index] == "":
 		html_class = "unknown-version"
-	elif "correct_version" in tags and version_compare(versions[mbi_index], tags["correct_version"]) == 0:
-		html_class = "correct_version"
+	elif "correct-version" in tags and version_compare(versions[mbi_index], tags["correct-version"]) == 0:
+		html_class = "correct-version"
 	elif compare_value == 0:
 		html_class = "up-to-date"
 	elif compare_value < 0:
