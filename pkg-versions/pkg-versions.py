@@ -60,6 +60,7 @@ def get_upstream_version(package_name: str) -> str:
 	)).json()["items"]
 	
 	if len(project_items) == 0:
+		print("Upstream project " + package_name + " not found")
 		return ""
 	
 	project_name = project_items[0]["project"]
@@ -232,6 +233,8 @@ def row_to_str(versions : [str], tags : {str : str}) -> str:
 	
 	if versions[upstream_index] == "":
 		html_class = "unknown-version"
+	elif "keep-version" in tags and version_compare(versions[mbi_index], tags["keep-version"]) == 0:
+		html_class = "keep-version"
 	elif "correct-version" in tags and version_compare(versions[mbi_index], tags["correct-version"]) == 0:
 		html_class = "correct-version"
 	elif compare_value == 0:
