@@ -40,7 +40,7 @@ from concurrent.futures import ThreadPoolExecutor as thread_pool
 upstream_cache_interval = 1 * 60 * 60
 upstream_cache_path = "/tmp/pkg-versions-upstream-cache.json"
 
-fedora_releases = ["f28", "f29", "f30", "f31"]
+fedora_releases = ["f28", "f29", "f30", "f31", "f32"]
 releases = fedora_releases + ["mbi", "upstream"]
 
 mbi_index = len(fedora_releases)
